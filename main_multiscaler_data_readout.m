@@ -6,8 +6,8 @@
 close all;
 clear all;
 clc;
-FileName = uigetfile('*.lst');
-% FileName = '1 mm deep fixed sample - 6400 ps resolution - XZ scan - 600 Hz by 190 kHz - 1 seconds.lst';
+H = Multiscaler_GUI;
+waitfor(H);
 [Binary_Data, Time_Patch, Range] = LSTDataRead(FileName);
 
 %% Time patch choice - create data vector
@@ -58,4 +58,10 @@ end
 OutputFileName = strcat('MultiscalerMovie-', FileName(1:end-3),'mat' );
 save(OutputFileName);
 
-plot(TotalHitsX,TotalHitsZ,'.')
+% plot(TotalHitsX,TotalHitsZ,'.')
+PhotonSpreadToImage2;
+
+figure;
+imshow(RawImage',[]);
+% imshow(log(double(RawImage'+1)));colorbar;
+axis square;
