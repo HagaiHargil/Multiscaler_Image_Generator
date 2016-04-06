@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 ShrinkFactorX = max(TotalHitsX(:)) ./ 1000;
+=======
+ShrinkFactorX = 1e1;
+>>>>>>> ae1361fcb70c63a6278f69e48ba987a75ba20bba
 
 MaxX = round( max(TotalHitsX(:)) ./ ShrinkFactorX);
 MaxZ = max(TotalHitsZ(:));
