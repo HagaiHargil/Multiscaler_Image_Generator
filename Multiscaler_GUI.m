@@ -30,7 +30,7 @@ function varargout = Multiscaler_GUI(varargin)
 
 % Edit the above text to modify the response to help Multiscaler_GUI
 
-% Last Modified by GUIDE v2.5 05-Apr-2016 17:55:52
+% Last Modified by GUIDE v2.5 06-Apr-2016 14:13:47
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -88,7 +88,7 @@ function FolderName = pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 FolderName = uigetdir;
 set(handles.nameOfFolder, 'String', FolderName);
-
+assignin('base', 'folderOfFiles', FolderName);
 
 % --- Executes on button press in pushbutton2.
 function FileName = pushbutton2_Callback(hObject, eventdata, handles)
@@ -106,3 +106,37 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 close all;
+
+
+% --- Executes on selection change in popupmenu1.
+function popupmenu1_Callback(hObject, eventdata, handles)
+% hObject    handle to popupmenu1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu1 contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from popupmenu1
+contents = cellstr(get(hObject,'String'));
+assignin('base', 'numOfFiles', contents{get(hObject,'Value')});
+
+% --- Executes during object creation, after setting all properties.
+function popupmenu1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to popupmenu1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in checkbox1.
+function checkbox1_Callback(hObject, eventdata, handles)
+% hObject    handle to checkbox1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of checkbox1
+assignin('base', 'useIteration', get(hObject,'Value'));
