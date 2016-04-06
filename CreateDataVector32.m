@@ -1,13 +1,17 @@
-% Reads the hex_data vector that was created by LSTDataRead.m 
-%and creates a photon table of that measurement.
-%Only reads the time_patch == 32 data.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [Final_Dataset] = CreateDataVector32(Raw_Data, Data_Channel_Num, Range)
+%% Script info
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% File name: "CreateDataVector32.m"                            %
+% Purpose: Reads the hex_data vector that was created          %
+% by LSTDataRead.m and creates a photon table of that          %
+% measurement. Only reads the time_patch == 32 data.           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 
+function [Final_Dataset] = CreateDataVector32(Raw_Data, Data_Channel_Num, Range)
 %% Check input
-% if (PMT_Data_Num ~= 1) || (PMT_Data_Num ~= 2) || (Galvo_Slow_Data_Num ~= 6) % Wrong input
-%     error('Data slot of PMT is incorrect. Can be only 1, 2 or 6 (START)');
-% end
+if ((Data_Channel_Num ~= 1) && (Data_Channel_Num ~= 2) && (Data_Channel_Num ~= 6)) % Wrong input
+    error('Data slot of PMT is incorrect. Can be only 1, 2 or 6 (START)');
+end
 
 %% Photon data allocation
 

@@ -1,14 +1,22 @@
-%% Readout of Multiscaler data
-% This is the main file that reads the MPANT data.
-% Run it when you wish to do so. DO NOT RUN IT IF YOU DON'T.
-
-%% Data Read
+%% Script info
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% File name: "main_multiscaler_data_readout.m"                 %
+% Purpose: Main program that controls the data readout from    %
+% multiscaler list files. Run it to open the GUI to choose the %
+% proper file or folder for readout.                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 close all;
 clear all;
 clc;
-FileName = uigetfile('*.lst');
-% FileName = '1 mm deep fixed sample - 6400 ps resolution - XZ scan - 600 Hz by 190 kHz - 1 seconds.lst';
+
+%% Open GUI
+H = Multiscaler_GUI;
+waitfor(H);
+
+%% Data Read
 [Binary_Data, Time_Patch, Range] = LSTDataRead(FileName);
+fprintf('File read successfully. Time patch value is %s. \nCreating data vectors... ', Time_Patch);
 
 %% Time patch choice - create data vector
 switch Time_Patch
@@ -21,8 +29,18 @@ switch Time_Patch
         PMT_Dataset   = CreateDataVector1a(Binary_Data, 1, double(Range));
         Galvo_Dataset = CreateDataVector1a(Binary_Data, 2, double(Range));
         TAG_Dataset   = CreateDataVector1a(Binary_Data, 6, double(Range)); 
+  
+    case '43'
+        PMT_Dataset   = CreateDataVector43(Binary_Data, 1, double(Range));
+        Galvo_Dataset = CreateDataVector43(Binary_Data, 2, double(Range));
+        TAG_Dataset   = CreateDataVector43(Binary_Data, 6, double(Range));
+        
+    case '2'
+        PMT_Dataset   = CreateDataVector2(Binary_Data, 1, double(Range));
+        Galvo_Dataset = CreateDataVector2(Binary_Data, 2, double(Range));
+        TAG_Dataset   = CreateDataVector2(Binary_Data, 6, double(Range));
 end
-
+fprintf('Data vectors created successfully. \nGenerating image...');
 %% Blubber
 
 TotalHitsX = [];
@@ -58,4 +76,10 @@ end
 OutputFileName = strcat('MultiscalerMovie-', FileName(1:end-3),'mat' );
 save(OutputFileName);
 
-plot(TotalHitsX,TotalHitsZ,'.')
+% plot(TotalHitsX,TotalHitsZ,'.')
+PhotonSpreadToImage2;
+
+figure;
+imshow(RawImage',[]);
+% imshow(log(double(RawImage'+1)));colorbar;
+axis square;

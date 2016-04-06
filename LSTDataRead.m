@@ -1,4 +1,12 @@
-%% List File Readout
+%% Script info
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% File name: "LSTDataRead.m"                                   %
+% Purpose: Receives a filename of a list file from the         %
+% multiscaler and creates a binary string vector of that data. % 
+% It also detects the time_patch and range value of the data.  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+
 function [binary_data, time_patch, range] = LSTDataRead(FileName)
 
 fileID = fopen(FileName);
@@ -23,22 +31,20 @@ time_patch = cell2mat(time_patch_str{1,1});
 formatSpec = '%s';
 temp1 = {'[DATA]'}; % Start of DATA text line
 temp2 = {'abc'}; % Initialization
-tic;
 while ~cellfun(@strcmp, temp1, temp2);
     temp2 = textscan(fileID, formatSpec, 1);
 end
-toc;
 
 %% Read Data
-tic;
 hex_data = textscan(fileID, formatSpec);
-toc;
+
 
 %% Depending on time_patch number, read the data vector accordingly
-if (strcmp('32', time_patch) || strcmp('1a', time_patch)) % CURRENTLY ONLY FITS TIMEPATCH_32 OR TIMEPATCH_1a
-    tic;
-    binary_data = hex2bin(hex_data{1,1}(:,1), 48);
-    toc;
-end
-
+switch time_patch
+    case '32'
+        binary_data = hex2bin(hex_data{1,1}(:,1), 48);
+    case '1a'
+        binary_data = hex2bin(hex_data{1,1}(:,1), 48);
+    case '43'
+        binary_data = hex2bin(hex_data{1,1}(:,1), 64);
 end
