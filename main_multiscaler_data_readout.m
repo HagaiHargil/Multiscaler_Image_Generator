@@ -66,44 +66,17 @@ while (currentIterationNum <= numOfFiles_int)
             TAG_Dataset   = CreateDataVector2(Binary_Data, 6, double(Range));
     end
     fprintf('Data vectors created successfully. \nGenerating image...\n');
-    %% Blubber
-
-    TotalHitsX = [];
-    TotalHitsZ = [];
-
-
-    for SweepNumber = 1:100
-
-        photon_single_sweep = PMT_Dataset((PMT_Dataset.Sweep_Counter == SweepNumber),1);
-        Galvo_single_sweep = Galvo_Dataset((Galvo_Dataset.Sweep_Counter == SweepNumber),1);
-        TAG_single_sweep = TAG_Dataset((TAG_Dataset.Sweep_Counter == SweepNumber),1);
-
-
-        % MaximalGalvoPeriod = max(diff(table2array(Galvo_single_sweep)));
-        % 
-        % [G,P] = meshgrid(single(table2array(Galvo_single_sweep)),single(table2array(photon_single_sweep)));
-        % 
-        % RawRelativePhotonArrivalTime = P-G;
-        % RawRelativePhotonArrivalTime(RawRelativePhotonArrivalTime < 1) = 1e10;
-        % RawRelativePhotonArrivalTime(RawRelativePhotonArrivalTime > MaximalGalvoPeriod) = 1e10;
-        % 
-        % RelativePhotonArrivalTime = min(RawRelativePhotonArrivalTime');
-        % RelativePhotonArrivalTime(RelativePhotonArrivalTime>1e9) = 1;
-
-        X_hits = ArrivalTimeRelativer(Galvo_single_sweep,photon_single_sweep);
-        Z_hits = ArrivalTimeRelativer(TAG_single_sweep,photon_single_sweep);
-
-        TotalHitsX = [TotalHitsX; X_hits];
-        TotalHitsZ = [TotalHitsZ; Z_hits];
-
-    end
-
+   
 
 %% Determine Coordinates
 
 CoordinateDeterminer;
 
-%% Saving Results
+%% Create Image 
+
+PhotonSpreadToImage;
+
+%% Save Results
 
 % MySaver;
 
@@ -111,7 +84,6 @@ CoordinateDeterminer;
 
 DisplayOutcome;
 
-    
     %% Update while loop parameters
     if useIteration
         if strcmp(numOfFiles, 'All files')
