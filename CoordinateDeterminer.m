@@ -1,9 +1,11 @@
-TotalHitsX = [];
-TotalHitsZ = [];
+TotalHitsX = cell(1,1e4);
+TotalHitsZ = cell(1,1e4);
 
 
+SweepIndex = 1;
 
-for SweepNumber = 1:3 % Looping over sweeps
+for SweepNumber = 1:100 % Looping over sweeps
+    
 
     photon_single_sweep = PMT_Dataset((PMT_Dataset.Sweep_Counter == SweepNumber),1);
     Galvo_single_sweep = Galvo_Dataset((Galvo_Dataset.Sweep_Counter == SweepNumber),1);
@@ -24,10 +26,12 @@ for SweepNumber = 1:3 % Looping over sweeps
     PhotonArrivalTimesRelativeToGalvo = ArrivalTimeRelativer(Galvo_single_sweep,photon_single_sweep);
     PhotonArrivalTimesRelativeToUltraFastLens = ArrivalTimeRelativer(TAG_single_sweep,photon_single_sweep);
 
-    TotalHitsX = [TotalHitsX; PhotonArrivalTimesRelativeToGalvo];
-    TotalHitsZ = [TotalHitsZ; PhotonArrivalTimesRelativeToUltraFastLens];
+    TotalHitsX{SweepIndex} = PhotonArrivalTimesRelativeToGalvo;
+    TotalHitsZ{SweepIndex} = PhotonArrivalTimesRelativeToUltraFastLens;
+    
+    SweepIndex = SweepIndex + 1;
 
 end
 
-
+NumFrames = SweepIndex-1;
 
