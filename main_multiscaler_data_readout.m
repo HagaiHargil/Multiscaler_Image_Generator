@@ -46,24 +46,24 @@ while (currentIterationNum <= numOfFiles_int)
     %% Time patch choice - create data vector
     switch Time_Patch
         case '32'
-            PMT_Dataset   = CreateDataVector32(Binary_Data, 1, double(Range));
-            Galvo_Dataset = CreateDataVector32(Binary_Data, 2, double(Range));
-            TAG_Dataset   = CreateDataVector32(Binary_Data, 6, double(Range));
+            STOP1_Dataset   = CreateDataVector32(Binary_Data, 1, double(Range));
+            STOP2_Dataset   = CreateDataVector32(Binary_Data, 2, double(Range));
+            START_Dataset   = CreateDataVector32(Binary_Data, 6, double(Range));
 
         case '1a'
-            PMT_Dataset   = CreateDataVector1a(Binary_Data, 1, double(Range));
-            Galvo_Dataset = CreateDataVector1a(Binary_Data, 2, double(Range));
-            TAG_Dataset   = CreateDataVector1a(Binary_Data, 6, double(Range)); 
+            STOP1_Dataset   = CreateDataVector1a(Binary_Data, 1, double(Range));
+            STOP2_Dataset = CreateDataVector1a(Binary_Data, 2, double(Range));
+            START_Dataset   = CreateDataVector1a(Binary_Data, 6, double(Range)); 
 
         case '43'
-            PMT_Dataset   = CreateDataVector43(Binary_Data, 1, double(Range));
-            Galvo_Dataset = CreateDataVector43(Binary_Data, 2, double(Range));
-            TAG_Dataset   = CreateDataVector43(Binary_Data, 6, double(Range));
+            STOP1_Dataset   = CreateDataVector43(Binary_Data, 1, double(Range));
+            STOP2_Dataset = CreateDataVector43(Binary_Data, 2, double(Range));
+            START_Dataset   = CreateDataVector43(Binary_Data, 6, double(Range));
 
         case '2'
-            PMT_Dataset   = CreateDataVector2(Binary_Data, 1, double(Range));
-            Galvo_Dataset = CreateDataVector2(Binary_Data, 2, double(Range));
-            TAG_Dataset   = CreateDataVector2(Binary_Data, 6, double(Range));
+            STOP1_Dataset   = CreateDataVector2(Binary_Data, 1, double(Range));
+            STOP2_Dataset = CreateDataVector2(Binary_Data, 2, double(Range));
+            START_Dataset   = CreateDataVector2(Binary_Data, 6, double(Range));
     end
     fprintf('Data vectors created successfully. \nGenerating image...\n');
    

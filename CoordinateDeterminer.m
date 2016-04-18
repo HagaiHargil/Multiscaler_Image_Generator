@@ -7,9 +7,9 @@ SweepIndex = 1;
 for SweepNumber = 1:100 % Looping over sweeps
     
 
-    photon_single_sweep = PMT_Dataset((PMT_Dataset.Sweep_Counter == SweepNumber),1);
-    Galvo_single_sweep = Galvo_Dataset((Galvo_Dataset.Sweep_Counter == SweepNumber),1);
-    TAG_single_sweep = TAG_Dataset((TAG_Dataset.Sweep_Counter == SweepNumber),1);
+    photon_single_sweep = STOP1_Dataset((STOP1_Dataset.Sweep_Counter == SweepNumber),1);
+    Galvo_single_sweep = STOP2_Dataset((STOP2_Dataset.Sweep_Counter == SweepNumber),1);
+    TAG_single_sweep = START_Dataset((START_Dataset.Sweep_Counter == SweepNumber),1);
 
 
     % MaximalGalvoPeriod = max(diff(table2array(Galvo_single_sweep)));

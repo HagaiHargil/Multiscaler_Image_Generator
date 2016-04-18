@@ -24,7 +24,7 @@ range = range_before_bit_depth * 2^(bitshift);
 
 %% Find the time_patch value
 formatSpec = 'time_patch=%s';
-time_patch_str = textscan(fileID, formatSpec, 'HeaderLines', 45);
+time_patch_str = textscan(fileID, formatSpec, 'HeaderLines', 59);
 time_patch = cell2mat(time_patch_str{1,1});
 
 %% Reach Data

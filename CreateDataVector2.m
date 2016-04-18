@@ -32,6 +32,12 @@ end
 
 %% Send out the data table
 Data_Lost = zeros(size(Data_Readings, 1),1);
-Final_Dataset = table(Time_of_Arrival, Data_Lost);
+if size(Data_Readings, 1) == 1
+    cell_help = cell(1, 2);
+    cell_help{1,1} = Time_of_Arrival; cell_help{1,2} = Data_Lost;
+    Final_Dataset = cell2table(cell_help, 'VariableNames', {'Time_of_Arrival' 'Data_Lost'});
+else
+    Final_Dataset = table(Time_of_Arrival, Data_Lost);
+end
 
 end
