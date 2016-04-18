@@ -1,16 +1,50 @@
 
+%% Outlier removal
 
-MaxX = round( max(TotalHitsX(:)) ./ 1e3);
-MaxZ = max(TotalHitsZ(:));
+%%%%%%%%%%%%%%%%%%% CHANGE THIS WITH TAG RESONANCE FREQUENCY %%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                                   %            
+    UltraFastLensFrequency = 188000; % [Hz] - CHANGE IF NECESSARY                   %
+    GalvoFrequency = 400 ; % [Hz] - Minimal galvo frequency, change if necessary    %
+%                                                                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% RawImage = uint8(zeros(2*MaxX+5,2*MaxZ+5));
-RawImage = (zeros(2*MaxX+5,2*MaxZ+5));
+ExpectedLensPeriodicityInBins = 1 ./ (0.8e-9 .* UltraFastLensFrequency); % The expected number of 800 ps time bins within a single TAG lens oscillation
+WrongLensPeriodicityReadings = ExpectedLensPeriodicityInBins .* 1.0001; % Periodicities higher by 0.01% of expected value are presumably outright wrong 
+
+ExpectedGalvoPeriodicityInBins = 1 ./ (0.8e-9 .* GalvoFrequency); % The expected number of 800 ps time bins within a single TAG lens oscillation
+WrongGalvoPeriodicityReadings = ExpectedGalvoPeriodicityInBins .* 1.2; % Periodicities higher by 20% of expected value are presumably outright wrong 
 
 
-% PhotonPatch = uint8( [1 2 1 ; 2 4 2 ; 1 2 1]);
-PhotonPatch = ( [1 2 1 ; 2 4 2 ; 1 2 1]);
+LegalHitsZ = cellfun(@(x) x(x<WrongLensPeriodicityReadings ), TotalHitsZ, 'UniformOutput',false);
+LegalHitsX = cellfun(@(x) x(x<WrongGalvoPeriodicityReadings), TotalHitsX, 'UniformOutput',false);
+
+% TotalHitsZ(TotalHitsZ>WrongLensPeriodicityReadings) = WrongLensPeriodicityReadings; % Dumping incorrect axial coordinates
+% TotalHitsX(TotalHitsX>WrongGalvoPeriodicityReadings) = WrongGalvoPeriodicityReadings; % Dumping incorrect lateral coordinates
 
 
-for m = 1:numel(TotalHitsX)
-    RawImage(2*ceil(TotalHitsX(m)./1e3)+1   :   2*ceil(TotalHitsX(m)./1e3)+3  ,   2*TotalHitsZ(m)+1   :   2*TotalHitsZ(m)+3 ) = RawImage(2*ceil(TotalHitsX(m)./1e3)+1   :   2*ceil(TotalHitsX(m)./1e3)+3,    2*TotalHitsZ(m)+1   :   2*TotalHitsZ(m)+3) + PhotonPatch;
+%% Raw image size
+
+ShrinkFactorX = max(LegalHitsX{1}) ./ 1000;
+ShrinkFactorZ = max(LegalHitsZ{1}) ./ 1000;
+
+MaxX = round( max(LegalHitsX{1}) ./ ShrinkFactorX);
+MaxZ = round( max(LegalHitsZ{1}) ./ ShrinkFactorZ);
+
+RawImage = single(zeros(MaxX+3,MaxZ+3,NumFrames));
+
+RescaledZ = cellfun(@(x) round(x ./ ShrinkFactorZ ) + 1, LegalHitsZ, 'UniformOutput',false);
+RescaledX = cellfun(@(x) round(x ./ ShrinkFactorX ) + 1, LegalHitsX, 'UniformOutput',false);
+
+%% Populating the raw image
+
+% Adding photons one at a time to the relevant voxel
+
+for m = 1:NumFrames
+    if numel(TotalHitsX{m})     
+        for n = 1:numel(LegalHitsX{m})
+%             RawImage(round(LegalHitsX{m}(n)./ShrinkFactorX) +1 ,   round(LegalHitsZ{m}(n)./ShrinkFactorZ)+1, m) = 1 + RawImage(round(LegalHitsX{m}(n)./ShrinkFactorX) +1 ,   round(LegalHitsZ{m}(n)./ShrinkFactorZ)+1, m);
+            RawImage(RescaledX{m}(n), RescaledZ{m}(n), m) = 1 + RawImage(RescaledX{m}(n), RescaledZ{m}(n), m);
+ 
+        end
+    end
 end
