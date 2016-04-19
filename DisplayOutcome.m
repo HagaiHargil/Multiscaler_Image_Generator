@@ -10,7 +10,7 @@ figure;
 subplot(2,2,1)
 imshow(RawImage2,[]); axis square;colorbar;
 subplot(2,2,2)
-imshow(log(double(RawImage2+1)));colorbar; axis square;
+imshow(log(double(RawImage2+1)),[]);colorbar; axis square;
 SmallImage = RawImage2(:,round(size(RawImage2,2).*0.8):end,1); 
 subplot(2,2,3)
 imshow(SmallImage,[]);axis square;colorbar;

@@ -30,10 +30,10 @@ ShrinkFactorZ = max(LegalHitsZ{1}) ./ 1000;
 MaxX = round( max(LegalHitsX{1}) ./ ShrinkFactorX);
 MaxZ = round( max(LegalHitsZ{1}) ./ ShrinkFactorZ);
 
-RawImage = single(zeros(MaxX+3,MaxZ+3,NumFrames));
+RawImage = single(zeros(MaxX+1,MaxZ+1,max(NumFrames,1)));
 
-RescaledZ = cellfun(@(x) round(x ./ ShrinkFactorZ ) + 1, LegalHitsZ, 'UniformOutput',false);
-RescaledX = cellfun(@(x) round(x ./ ShrinkFactorX ) + 1, LegalHitsX, 'UniformOutput',false);
+RescaledZ = cellfun(@(x) floor(x ./ ShrinkFactorZ ) + 1, LegalHitsZ, 'UniformOutput',false);
+RescaledX = cellfun(@(x) floor(x ./ ShrinkFactorX ) + 1, LegalHitsX, 'UniformOutput',false);
 
 %% Populating the raw image
 
