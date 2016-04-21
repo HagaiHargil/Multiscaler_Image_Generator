@@ -47,4 +47,8 @@ else
     Final_Dataset = table(Time_of_Arrival, Sweep_Counter, Data_Lost);
 end
 
+%% Add first row of zeros (signaling the first start event which is unrecorded)
+cell_help = cell(1, 3);
+cell_help{1,1} = 0; cell_help{1,2} = 1; cell_help{1,3} = 0;
+Final_Dataset = [cell2table(cell_help, 'VariableNames', {'Time_of_Arrival' 'Sweep_Counter' 'Data_Lost'}); Final_Dataset];
 end

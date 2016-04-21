@@ -30,7 +30,7 @@ switch Data_Channel_Num
         Time_of_Arrival = bin2dec(Data_Readings(:,1:44));        
 end
 
-%% Send out the data table
+%% Create the data table
 Data_Lost = zeros(size(Data_Readings, 1),1);
 if size(Data_Readings, 1) == 1
     cell_help = cell(1, 2);
@@ -40,4 +40,8 @@ else
     Final_Dataset = table(Time_of_Arrival, Data_Lost);
 end
 
+%% Add first row of zeros (signaling the first start event which is unrecorded)
+cell_help = cell(1, 2);
+cell_help{1,1} = 0; cell_help{1,2} = 0;
+Final_Dataset = [cell2table(cell_help, 'VariableNames', {'Time_of_Arrival', 'Data_Lost'}); Final_Dataset];
 end
