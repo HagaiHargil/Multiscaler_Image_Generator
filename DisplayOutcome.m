@@ -16,3 +16,5 @@ subplot(2,2,3)
 imshow(SmallImage,[]);axis square;colorbar;
 subplot(2,2,4)
 imshow(log(double(SmallImage+1)),[]);;axis square;colorbar;
+
+% figure;imshow(log(RawImage+1),[]); axis square;colorbar;
