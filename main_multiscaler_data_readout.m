@@ -70,8 +70,8 @@ while (currentIterationNum <= numOfFiles_int)
 
 %% Determine Coordinates
 
-CoordinateDeterminer;
-
+%CoordinateDeterminer;
+PhotonCellArray = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, 1);
 %% Create Image 
 
 PhotonSpreadToImage;
