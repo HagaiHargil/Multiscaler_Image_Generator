@@ -72,6 +72,8 @@ while (currentIterationNum <= numOfFiles_int)
 
 %CoordinateDeterminer;
 PhotonCellArray = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, 1);
+
+%% Here I need to split the cells into frames.%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Create Image 
 
 PhotonSpreadToImage;
