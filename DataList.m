@@ -42,11 +42,13 @@ end
 %% Substract the time bin headline of all photons in that bin
 DataCellArray(2,:) = cellfun(@minus, DataCellArray(2,:), DataCellArray(1,:), 'UniformOutput', 0);
 
-%% Remove empty cells - DISABLED -  CURRENTLY ADDING ZEROS AFTER THE LAST INPUT
-%DataCellArray(:,cellfun('isempty', DataCellArray(2,:))) = [];
-for n = 1:Num_of_Lines
-    HelpCell2 = vertcat(DataCellArray{2,n}, zeros(MaxNumOfEventsInLine - size(DataCellArray{2,n}, 1),1));
-    DataCellArray{2,n} = HelpCell2;
-end
-    
+%% Remove empty cells
+% %DataCellArray(:,cellfun('isempty', DataCellArray(2,:))) = [];
+
+%% Add NaNs after the last input to make all photon cells to be of similar length
+% for n = 1:Num_of_Lines
+%     HelpCell2 = vertcat(DataCellArray{2,n}, NaN(MaxNumOfEventsInLine - size(DataCellArray{2,n}, 1),1));
+%     DataCellArray{2,n} = HelpCell2;
+% end
+%     
 end
