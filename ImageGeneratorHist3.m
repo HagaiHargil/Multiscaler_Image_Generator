@@ -3,8 +3,8 @@ function RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFr
 RawImagesMat = zeros(SizeX, SizeY, size(StartOfFrameVec, 1) - 1); % Last half-recorded frame won't be imaged
 
 %% Calculate edge vector of image (for hist3 function)
-EdgeY = linspace(0, PhotonArray(end,2), SizeX);
-EdgeX = linspace(0, max(diff(PhotonArray(3:end,2))), SizeY);
+EdgeY = linspace(0, PhotonArray(end,2), SizeY);
+EdgeX = linspace(0, max(diff(PhotonArray(3:end,2))), SizeX);
 
 
 %% Create histograms

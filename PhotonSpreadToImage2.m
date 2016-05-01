@@ -3,5 +3,6 @@ function [RawImage] = PhotonSpreadToImage2(CurrentEvents, SizeX, SizeY, EdgeX, E
 %% Building a histogram of photon locations
 Edges = {EdgeX EdgeY};
 RawImage = hist3(CurrentEvents, 'Edges', Edges);
-
+figure();
+hist3(CurrentEvents, 'Edges', Edges);
 end
