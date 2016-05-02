@@ -1,3 +1,13 @@
+%% Script info
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% File name: "CreateDataList.m"                                %
+% Purpose: Creates a two-columned vector - left column is the  %
+% photon arrival time (in timebins), and the right one is the  %
+% fitting start-of-line time. It also flips the lines and      %
+% frames so an image could be generated.                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+
 function [DataArray, MaxNumOfEventsInLine] = CreateDataList(Num_of_Events, Num_of_Lines, DataEvents, DataLines)
 
 %% Create basic vector of start-of-line times
@@ -35,4 +45,7 @@ DataArray(isnan(DataArray)) = StartingTimeOfLine(1, end);
 
 %% Substract the line time from photon arrival times to receive relative arrival times
 DataArray(:,1) = DataArray(:,1) - DataArray(:,2);
+
+%% Flip frames and lines
+
 end

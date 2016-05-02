@@ -72,20 +72,20 @@ while (currentIterationNum <= numOfFiles_int)
 
 %CoordinateDeterminer;
 [PhotonArray, NumOfLines, StartOfFrameChannel, MaxNumOfEventsInLine, TotalEvents] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, 1);
-fprintf('Finished creating the photon cell array. Creating Raw image...\n');
+fprintf('Finished creating the photon array. Creating Raw image...\n');
 
 %% Determine which data channel contains frame data
 switch StartOfFrameChannel
     case 1
-        StartOfFrameVec = STOP1_Dataset.Time_of_Arrival;
+        StartOfFrameVec = CreateFrameStarts(table2array(STOP1_Dataset.Time_of_Arrival));
     case 2
-        StartOfFrameVec = STOP2_Dataset.Time_of_Arrival;
+        StartOfFrameVec = CreateFrameStarts(table2array(STOP2_Dataset.Time_of_Arrival));
     case 6
-        StartOfFrameVec = START_Dataset.Time_of_Arrival;
+        StartOfFrameVec = CreateFrameStarts(table2array(START_Dataset.Time_of_Arrival));
 end
 
 %% Create Images 
-SizeX = 1500;
+SizeX = 150;
 SizeY = 150;
 
 RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents);
