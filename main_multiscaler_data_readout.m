@@ -77,19 +77,11 @@ fprintf('Finished creating the photon array. Creating Raw image...\n');
 %% Determine which data channel contains frame data
 switch StartOfFrameChannel
     case 1
-<<<<<<< HEAD
         StartOfFrameVec = CreateFrameStarts(STOP1_Dataset.Time_of_Arrival(:));
     case 2
         StartOfFrameVec = CreateFrameStarts(STOP2_Dataset.Time_of_Arrival(:));
     case 6
         StartOfFrameVec = CreateFrameStarts(START_Dataset.Time_of_Arrival(:));
-=======
-        StartOfFrameVec = CreateFrameStarts(table2array(STOP1_Dataset.Time_of_Arrival));
-    case 2
-        StartOfFrameVec = CreateFrameStarts(table2array(STOP2_Dataset.Time_of_Arrival));
-    case 6
-        StartOfFrameVec = CreateFrameStarts(table2array(START_Dataset.Time_of_Arrival));
->>>>>>> master
 end
 
 %% Create Images 
