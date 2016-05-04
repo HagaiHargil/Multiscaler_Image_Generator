@@ -16,7 +16,7 @@ numOfFiles = 'All files'; % Default choice
 H = Multiscaler_GUI; % Start GUI
 waitfor(H); % While GUI is open don't continue
 
-%% Number of files to read
+%% Number of files to read as defined in GUI
 if useIteration 
     myFolderInfo = dir(folderOfFiles);
     myFolderCell = struct2cell(myFolderInfo); % Only names of files

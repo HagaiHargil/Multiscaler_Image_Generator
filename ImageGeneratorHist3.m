@@ -9,8 +9,16 @@ for CurrentFrameNum = 1:size(StartOfFrameVec, 1) - 1 % If a frame isn't complete
     CurrentEvents = PhotonArray((PhotonArray(:,2) >= StartOfFrameVec(CurrentFrameNum, 1) & (PhotonArray(:,2) < StartOfFrameVec(CurrentFrameNum + 1, 1))),:); % Only photons that came in the specific time interval of the CurrentFrameNum's frame
     
     %% Calculate edge vector of image (for hist3 function)
-    EdgeX = linspace(0, max(diff(CurrentEvents(:,2))), SizeX);
-    EdgeY = linspace(0, CurrentEvents(end,2), SizeY);
+    MaxDiffInStarts = max(diff(CurrentEvents(:,2)));
+    if MaxDiffInStarts ~= 0
+        EdgeX = linspace(0, MaxDiffInStarts, SizeX);
+    elseif isempty(MaxDiffInStarts)
+        continue;
+    else
+        EdgeX = linspace(0, CurrentEvents(1,2), SizeX);
+    end
+    
+    EdgeY = linspace(CurrentEvents(1,2), CurrentEvents(end,2), SizeY);
     
     %% Run hist3
     RawImagesMat(:,:,CurrentFrameNum) = PhotonSpreadToImage2(CurrentEvents, SizeX, SizeY, EdgeX, EdgeY);
