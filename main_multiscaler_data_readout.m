@@ -65,7 +65,7 @@ while (currentIterationNum <= numOfFiles_int)
             STOP2_Dataset   = CreateDataVector2(Binary_Data, 2, double(Range));
             START_Dataset   = CreateDataVector2(Binary_Data, 6, double(Range));
     end
-    fprintf('Data vectors created successfully. \nGenerating image...\n');
+    fprintf('Data vectors created successfully. \nGenerating photon array...\n');
    
 
 %% Create the photon cell array of lines
@@ -85,8 +85,8 @@ switch StartOfFrameChannel
 end
 
 %% Create Images 
-SizeX = 150;
-SizeY = 150;
+SizeX = 100;
+SizeY = 100;
 
 RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents);
 

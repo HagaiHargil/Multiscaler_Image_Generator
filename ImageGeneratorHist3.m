@@ -1,6 +1,6 @@
 function RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents)
 
-RawImagesMat = zeros(SizeX, SizeY, size(StartOfFrameVec, 1) - 1); % Last half-recorded frame won't be imaged
+RawImagesMat = zeros(SizeX, SizeY, size(StartOfFrameVec, 1) - 1,'uint16'); % Last half-recorded frame won't be imaged
 
 %% Create histograms
 for CurrentFrameNum = 1:size(StartOfFrameVec, 1) - 1 % If a frame isn't complete an image won't be generated from it
@@ -22,6 +22,7 @@ for CurrentFrameNum = 1:size(StartOfFrameVec, 1) - 1 % If a frame isn't complete
     
     %% Run hist3
     RawImagesMat(:,:,CurrentFrameNum) = PhotonSpreadToImage2(CurrentEvents, SizeX, SizeY, EdgeX, EdgeY);
+    imagesc(RawImagesMat(:,:,CurrentFrameNum))
 end
 
 end

@@ -41,7 +41,8 @@ while ~cellfun(@strcmp, temp1, temp2);
 end
 
 %% Read Data
-hex_data = textscan(fileID, formatSpec);
+stam_data = textscan(fileID, formatSpec, 10e5);
+hex_data = textscan(fileID, formatSpec, 10e6); %%%REMOVE 2 lines BEFORE GITTING
 
 
 %% Depending on time_patch number, read the data vector accordingly
