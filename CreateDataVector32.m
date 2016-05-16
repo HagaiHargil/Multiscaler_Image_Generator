@@ -34,9 +34,11 @@ switch Data_Channel_Num
 end
 
 %% Update time of arrival to include sweep counter
-
-Time_of_Arrival = Time_of_Arrival_Before_Sweep_Correction(:,1) + (Sweep_Counter(:,1) - 1) * Range;
-
+if ~isempty(Sweep_Counter(Sweep_Counter(:,1) > 1,1))
+    Time_of_Arrival = Time_of_Arrival_Before_Sweep_Correction(:,1) + (Sweep_Counter(:,1) - 1) * Range;
+else
+    Time_of_Arrival = Time_of_Arrival_Before_Sweep_Correction;
+end
 %% Send out the data table
 Data_Lost = base2dec(Data_Readings(:,1), 10);
 if size(Data_Readings, 1) == 1

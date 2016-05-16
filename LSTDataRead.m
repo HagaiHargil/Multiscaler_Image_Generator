@@ -41,7 +41,6 @@ while ~cellfun(@strcmp, temp1, temp2);
 end
 
 %% Read Data
-stam_data = textscan(fileID, formatSpec, 10e5);
 hex_data = textscan(fileID, formatSpec, 10e6); %%%REMOVE 2 lines BEFORE GITTING
 
 
