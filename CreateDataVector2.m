@@ -31,6 +31,7 @@ switch Data_Channel_Num
 end
 
 %% Create the data table
+Time_of_Arrival = sort(Time_of_Arrival);
 Data_Lost = zeros(size(Data_Readings, 1),1);
 if size(Data_Readings, 1) == 1
     cell_help = cell(1, 2);

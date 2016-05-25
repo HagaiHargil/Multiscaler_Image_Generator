@@ -38,6 +38,7 @@ end
 Time_of_Arrival = Time_of_Arrival_Before_Sweep_Correction(:,1) + (Sweep_Counter(:,1) - 1) * Range;
 
 %% Send out the data table
+Time_of_Arrival = sort(Time_of_Arrival);
 Data_Lost = zeros(size(Data_Readings, 1),1); % No data lost bit in this type of file
 if size(Data_Readings, 1) == 1
     cell_help = cell(1, 3);

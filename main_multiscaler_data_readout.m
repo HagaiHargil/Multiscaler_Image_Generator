@@ -44,34 +44,107 @@ while (currentIterationNum <= numOfFiles_int)
     fprintf('File read successfully. Time patch value is %s. \nCreating data vectors... ', Time_Patch);
 
     %% Time patch choice - create data vector
+    num_of_data_vectors = 0;
     switch Time_Patch
         case '32'
-            STOP1_Dataset   = CreateDataVector32(Binary_Data, 1, double(Range));
-            STOP2_Dataset   = CreateDataVector32(Binary_Data, 2, double(Range));
-            START_Dataset   = CreateDataVector32(Binary_Data, 6, double(Range));
-
+            if STOP1 == 8
+                STOP1_empty = true;
+                STOP1_Dataset = [];
+            else
+                STOP1_Dataset   = CreateDataVector32(Binary_Data, 1, double(Range));
+                num_of_data_vectors = num_of_data_vectors + 1;
+            end
+            if STOP2 == 8
+                STOP2_empty = false;
+                STOP2_Dataset = [];
+            else
+                STOP2_Dataset   = CreateDataVector32(Binary_Data, 2, double(Range));
+                num_of_data_vectors = num_of_data_vectors + 1;
+            end
+            if START == 8
+                START_empty = false;
+                START_Dataset = [];
+            else
+                START_Dataset   = CreateDataVector32(Binary_Data, 6, double(Range));
+                num_of_data_vectors = num_of_data_vectors + 1;
+            end
+            
         case '1a'
-            STOP1_Dataset   = CreateDataVector1a(Binary_Data, 1, double(Range));
-            STOP2_Dataset   = CreateDataVector1a(Binary_Data, 2, double(Range));
-            START_Dataset   = CreateDataVector1a(Binary_Data, 6, double(Range)); 
+            if STOP1 == 8
+                STOP1_empty = true;
+                STOP1_Dataset = [];
+            else
+                STOP1_Dataset   = CreateDataVector1a(Binary_Data, 1, double(Range));
+                num_of_data_vectors = num_of_data_vectors + 1;
+            end
+            if STOP2 == 8
+                STOP2_empty = false;
+                STOP2_Dataset = [];
+            else
+                STOP2_Dataset   = CreateDataVector1a(Binary_Data, 2, double(Range));
+                num_of_data_vectors = num_of_data_vectors + 1;
+            end
+            if START == 8
+                START_empty = false;
+                START_Dataset = [];
+            else
+                START_Dataset   = CreateDataVector1a(Binary_Data, 6, double(Range));
+                num_of_data_vectors = num_of_data_vectors + 1;
+            end 
 
         case '43'
-            STOP1_Dataset   = CreateDataVector43(Binary_Data, 1, double(Range));
-            STOP2_Dataset   = CreateDataVector43(Binary_Data, 2, double(Range));
-            START_Dataset   = CreateDataVector43(Binary_Data, 6, double(Range));
+            if STOP1 == 8
+                STOP1_empty = true;
+                STOP1_Dataset = [];
+            else
+                STOP1_Dataset   = CreateDataVector43(Binary_Data, 1, double(Range));
+                num_of_data_vectors = num_of_data_vectors + 1;
+            end
+            if STOP2 == 8
+                STOP2_empty = false;
+                STOP2_Dataset = [];
+            else
+                STOP2_Dataset   = CreateDataVector43(Binary_Data, 2, double(Range));
+                num_of_data_vectors = num_of_data_vectors + 1;
+            end
+            if START == 8
+                START_empty = false;
+                START_Dataset = [];
+            else
+                START_Dataset   = CreateDataVector43(Binary_Data, 6, double(Range));
+                num_of_data_vectors = num_of_data_vectors + 1;
+            end
 
         case '2'
-            STOP1_Dataset   = CreateDataVector2(Binary_Data, 1, double(Range));
-            STOP2_Dataset   = CreateDataVector2(Binary_Data, 2, double(Range));
-            START_Dataset   = CreateDataVector2(Binary_Data, 6, double(Range));
+            if STOP1 == 8
+                STOP1_empty = true;
+                STOP1_Dataset = [];
+            else
+                STOP1_Dataset   = CreateDataVector2(Binary_Data, 1, double(Range));
+                num_of_data_vectors = num_of_data_vectors + 1;
+            end
+            if STOP2 == 8
+                STOP2_empty = false;
+                STOP2_Dataset = [];
+            else
+                STOP2_Dataset   = CreateDataVector2(Binary_Data, 2, double(Range));
+                num_of_data_vectors = num_of_data_vectors + 1;
+            end
+            if START == 8
+                START_empty = false;
+                START_Dataset = [];
+            else
+                START_Dataset   = CreateDataVector2(Binary_Data, 6, double(Range));
+                num_of_data_vectors = num_of_data_vectors + 1;
+            end
     end
-    fprintf('Data vectors created successfully. \nGenerating photon array...\n');
+    fprintf('%f data vectors created successfully. \n Generating photon array...\n', num_of_data_vectors);
    
 
 %% Create the photon cell array of lines
 
-%CoordinateDeterminer;
-[PhotonArray, NumOfLines, StartOfFrameChannel, MaxNumOfEventsInLine, TotalEvents] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, 1);
+input_channels = [START; STOP1; STOP2];
+[PhotonArray, NumOfLines, StartOfFrameChannel, MaxNumOfEventsInLine, TotalEvents] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, input_channels(input_channels(:,1) == 1,1));
 fprintf('Finished creating the photon array. Creating Raw image...\n');
 
 %% Determine which data channel contains frame data
@@ -82,11 +155,13 @@ switch StartOfFrameChannel
         StartOfFrameVec = CreateFrameStarts(STOP2_Dataset.Time_of_Arrival(:));
     case 6
         StartOfFrameVec = CreateFrameStarts(START_Dataset.Time_of_Arrival(:));
+    case 0 % No start of frame signal
+        StartOfFrameVec = [];
 end
 
 %% Create Images 
-SizeX = 100;
-SizeY = 100;
+% SizeX = 100;
+% SizeY = 100;
 
 RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents);
 

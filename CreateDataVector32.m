@@ -40,6 +40,7 @@ else
     Time_of_Arrival = Time_of_Arrival_Before_Sweep_Correction;
 end
 %% Send out the data table
+Time_of_Arrival = sort(Time_of_Arrival);
 Data_Lost = base2dec(Data_Readings(:,1), 10);
 if size(Data_Readings, 1) == 1
     cell_help = cell(1, 3);
