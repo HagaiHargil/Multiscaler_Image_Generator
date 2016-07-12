@@ -3,11 +3,10 @@ function RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFr
 RawImagesMat = zeros(SizeX, SizeY, size(StartOfFrameVec, 1) - 1,'uint16'); % Last half-recorded frame won't be imaged
 CurrentFrameNum = 1;
 %% Create histograms
-if (isempty(StartOfFrameVec) && (NumOfLines == 0))
+if (isempty(StartOfFrameVec) && (NumOfLines == 0)) % A single frame that has no line data
     CurrentEvents = PhotonArray;
     MaxPhotonTime = CurrentEvents(end,1);
     TimeForYLine = ceil(MaxPhotonTime / SizeY);
-    TimeForXLine = ceil(TimeForYLine / SizeX);
     m = 1;
     for n = 1:SizeY
        while ((CurrentEvents(m,1) <= TimeForYLine * n) && (m < TotalEvents))
@@ -23,6 +22,7 @@ if (isempty(StartOfFrameVec) && (NumOfLines == 0))
     EdgeY = (unique(CurrentEvents(:,2)))';
     EdgeY = EdgeY(1,2:end); % Otherwise it takes 0 as its first value
     EdgeX = linspace(0, TimeForYLine, SizeX);
+   
     %% Run hist3
     RawImagesMat(:,:,CurrentFrameNum) = PhotonSpreadToImage2(CurrentEvents, SizeX, SizeY, EdgeX, EdgeY);
     imagesc(RawImagesMat(:,:,CurrentFrameNum))

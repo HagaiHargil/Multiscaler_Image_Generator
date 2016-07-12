@@ -18,17 +18,17 @@ switch Data_Channel_Num
     case 1
         helpstr = repmat('001', size(Raw_Data, 1), 1) == Raw_Data(:,62:64); % helpstr locates the rows in which the wanted data channel was read
         Data_Readings = Raw_Data((sum(helpstr, 2) == 3),1:60); % creates a vector only containing wanted data
-        TAG_Bits = bin2dec(Data_Readings(:,2:16)); % reads TAG bits data and converts it to decimal
+        TAG_Bits = Data_Readings(:,2:16); % reads TAG bits data and converts it to decimal
         Time_of_Arrival = bin2dec(Data_Readings(:,17:60)); % reads timestamp data and converts it to decimal
     case 2
         helpstr = repmat('010', size(Raw_Data, 1), 1) == Raw_Data(:,62:64); % helpstr locates the rows in which the wanted data channel was read
         Data_Readings = Raw_Data((sum(helpstr, 2) == 3),1:60); % creates a vector only containing wanted data
-        TAG_Bits = bin2dec(Data_Readings(:,2:16)); % reads TAG bits data and converts it to decimal
+        TAG_Bits = Data_Readings(:,2:16); % reads TAG bits data and converts it to decimal
         Time_of_Arrival = bin2dec(Data_Readings(:,17:60)); % reads timestamp data and converts it to decimal
     case 6
         helpstr = repmat('110', size(Raw_Data, 1), 1) == Raw_Data(:,62:64); % helpstr locates the rows in which the wanted data channel was read
         Data_Readings = Raw_Data((sum(helpstr, 2) == 3),1:60); % creates a vector only containing wanted data
-        TAG_Bits = bin2dec(Data_Readings(:,2:16)); % reads TAG bits data and converts it to decimal
+        TAG_Bits = Data_Readings(:,2:16); % reads TAG bits data and converts it to decimal
         Time_of_Arrival = bin2dec(Data_Readings(:,17:60)); % reads timestamp data and converts it to decimal      
 end
 
