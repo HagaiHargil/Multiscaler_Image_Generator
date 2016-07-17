@@ -30,7 +30,7 @@ function varargout = Multiscaler_GUI(varargin)
 
 % Edit the above text to modify the response to help Multiscaler_GUI
 
-% Last Modified by GUIDE v2.5 12-Jul-2016 16:47:36
+% Last Modified by GUIDE v2.5 14-Jul-2016 17:23:57
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -471,3 +471,63 @@ end
 
 set(hObject, 'String', '16');
 assignin('base', 'TAG_Z_TAG_bit_end', str2double(get(hObject,'String')));
+
+
+
+function TAGfr_Callback(hObject, eventdata, handles)
+% hObject    handle to TAGfr (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of TAGfr as text
+%        str2double(get(hObject,'String')) returns contents of TAGfr as a double
+
+assignin('base', 'TAGFreq', str2double(get(hObject,'String')));
+
+% --- Executes during object creation, after setting all properties.
+function TAGfr_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to TAGfr (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+set(hObject, 'String', '189.88');
+assignin('base', 'TAGFreq', str2double(get(hObject,'String')));
+
+function edit21_Callback(hObject, eventdata, handles)
+% hObject    handle to edit21 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit21 as text
+%        str2double(get(hObject,'String')) returns contents of edit21 as a double
+
+
+
+% --- Executes during object creation, after setting all properties.
+function edit21_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit21 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in checkbox2.
+function checkbox2_Callback(hObject, eventdata, handles)
+% hObject    handle to checkbox2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of checkbox2
+
+assignin('base', 'InterpolateTAGLens', get(hObject,'Value'));

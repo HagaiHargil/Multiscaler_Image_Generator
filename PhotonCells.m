@@ -7,8 +7,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 
-function [PhotonArray, Num_of_Lines, StartOfFramesChannel, MaxNumOfEventsInLine, TotalEvents] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, PMT_Channel_Num)
+function [PhotonArray, Num_of_Lines, StartOfFramesChannel, MaxNumOfEventsInLine, TotalEvents, PMTChannelNum] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, PMT_Channel_Num)
 
+PMTChannelNum = PMT_Channel_Num;
 % The switch determines which channel contains the photon arrival time data. 
 switch PMT_Channel_Num
     case 1

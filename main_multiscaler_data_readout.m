@@ -36,6 +36,11 @@ else
 end
 
 %% Check inputs from GUI
+% Existing file in folder
+if ~exist('FileName', 'var')
+    error('No file chosen.');
+end
+
 % Image pixel data
 if ((SizeX <= 0) || (SizeY <= 0))
     error('Pixel size of final image incorrect. \n'); 
@@ -48,8 +53,14 @@ if ((Polygon_X_TAG_bit_start > Polygon_X_TAG_bit_end) || (Polygon_X_TAG_bit_star
      (Galvo_Y_TAG_bit_end <= 0) || (Galvo_Y_TAG_bit_end > 16) || ...
      (TAG_Z_TAG_bit_start > TAG_Z_TAG_bit_end) || (TAG_Z_TAG_bit_start <= 0) || (TAG_Z_TAG_bit_start > 16) || ...
      (TAG_Z_TAG_bit_end <= 0) || (TAG_Z_TAG_bit_end > 16))
-    error('TAG bits allocation incorrect \n'); 
+    error('TAG bits allocation incorrect.'); 
 end
+
+% Tag lens data
+if ((TAGFreq <= 0) || (TAGFreq > 193))
+    error('Invalid TAG lens frequency.');
+end
+
 %% 
 currentIterationNum = 1;
 
@@ -110,8 +121,11 @@ while (currentIterationNum <= numOfFiles_int)
 
 %% Create the photon array of lines
 
-input_channels = [START; STOP1; STOP2];
-[PhotonArray, NumOfLines, StartOfFrameChannel, MaxNumOfEventsInLine, TotalEvents] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, input_channels(input_channels(:,1) == 1,1));
+valueSet2 = {6, 1, 2};
+keySet2 = {START, STOP1, STOP2};
+input_channels = containers.Map(keySet2, valueSet2);
+%input_channels(1) is the PMT data.
+[PhotonArray, NumOfLines, StartOfFrameChannel, MaxNumOfEventsInLine, TotalEvents, PMTChannelNum] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, input_channels(1));
 fprintf('Finished creating the photon array. Creating Raw image...\n');
 
 %% Determine which data channel contains frame data
@@ -126,7 +140,17 @@ switch StartOfFrameChannel
         StartOfFrameVec = [];
 end
 
-%% Create Images 
+%% Determine which data channel contains TAG data and interpolate TAG for each photon
+if InterpolateTAGLens
+    keySet3 = {1, 2, 6};
+    valueSet3 = {STOP1_Dataset, STOP2_Dataset, START_Dataset};
+    mapData = containers.Map(keySet3, valueSet3);
+    
+    InterpData = Plot_TAG_Phase(mapData(input_channels(1)), TAGFreq, mapData(input_channels(5))); 
+    mapData(input_channels(1)) = InterpData;
+end
+
+%% Create Images
 
 RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents);
 
