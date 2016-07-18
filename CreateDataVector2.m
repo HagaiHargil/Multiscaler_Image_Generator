@@ -30,6 +30,13 @@ switch Data_Channel_Num
         Time_of_Arrival = bin2dec(Data_Readings(:,1:44));        
 end
 
+%% Check if the data vector is empty
+if isempty(Data_Readings)
+    fprintf('Data channel number %d was empty. ', Data_Channel_Num);
+    Final_Dataset = [];
+    return;
+end
+
 %% Create the data table
 Time_of_Arrival = sort(Time_of_Arrival);
 Data_Lost = zeros(size(Data_Readings, 1),1);

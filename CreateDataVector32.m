@@ -33,6 +33,13 @@ switch Data_Channel_Num
         Time_of_Arrival_Before_Sweep_Correction = bin2dec(Data_Readings(:,9:44));        
 end
 
+%% Check if the data vector is empty
+if isempty(Data_Readings)
+    fprintf('Data channel number %d was empty. ', Data_Channel_Num);
+    Final_Dataset = [];
+    return;
+end
+
 %% Update time of arrival to include sweep counter
 if ~isempty(Sweep_Counter(Sweep_Counter(:,1) > 1,1))
     Time_of_Arrival = Time_of_Arrival_Before_Sweep_Correction(:,1) + (Sweep_Counter(:,1) - 1) * Range;

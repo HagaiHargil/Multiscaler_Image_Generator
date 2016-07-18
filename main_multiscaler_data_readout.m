@@ -12,6 +12,7 @@ clc;
 
 %% Open GUI
 useIteration = 0; % One file or more?
+InterpolateTAGLens = 0; % Initialization
 numOfFiles = 'All files'; % Default choice
 H = Multiscaler_GUI; % Start GUI
 waitfor(H); % While GUI is open don't continue
@@ -96,7 +97,9 @@ while (currentIterationNum <= numOfFiles_int)
     else
         CurrentChannel = 1;
         STOP1_Dataset = eval(mapObj(Time_Patch));
-        num_of_data_vectors = num_of_data_vectors + 1;
+        if ~isempty(STOP1_Dataset)
+            num_of_data_vectors = num_of_data_vectors + 1;
+        end
     end
     
     if STOP2 == 8
@@ -105,7 +108,9 @@ while (currentIterationNum <= numOfFiles_int)
     else
         CurrentChannel = 2;
         STOP2_Dataset = eval(mapObj(Time_Patch));
-        num_of_data_vectors = num_of_data_vectors + 1;
+        if ~isempty(STOP2_Dataset)
+            num_of_data_vectors = num_of_data_vectors + 1;
+        end
     end
     
     if START == 8
@@ -114,10 +119,12 @@ while (currentIterationNum <= numOfFiles_int)
     else
         CurrentChannel = 6;
         START_Dataset = eval(mapObj(Time_Patch));
-        num_of_data_vectors = num_of_data_vectors + 1;
+        if ~isempty(START_Dataset)
+            num_of_data_vectors = num_of_data_vectors + 1;
+        end
     end
     
-    fprintf('%d data vectors created successfully. \nGenerating photon array...\n', num_of_data_vectors);
+    fprintf('\n%d data vector(s) created successfully. \nGenerating photon array...\n', num_of_data_vectors);
 
 %% Create the photon array of lines
 
@@ -142,12 +149,14 @@ end
 
 %% Determine which data channel contains TAG data and interpolate TAG for each photon
 if InterpolateTAGLens
+    fprintf('TAG lens data being interpolated...\n');
     keySet3 = {1, 2, 6};
     valueSet3 = {STOP1_Dataset, STOP2_Dataset, START_Dataset};
     mapData = containers.Map(keySet3, valueSet3);
     
     InterpData = Plot_TAG_Phase(mapData(input_channels(1)), TAGFreq, mapData(input_channels(5))); 
     mapData(input_channels(1)) = InterpData;
+    fprintf('TAG lens data interpolated successfully. Generating imaging...\n');
 end
 
 %% Create Images

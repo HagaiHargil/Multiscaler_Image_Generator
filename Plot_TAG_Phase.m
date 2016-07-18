@@ -27,7 +27,7 @@ while changedTicks ~= 0
     if isempty(missingTicks)
         changedTicks = 0;
     else
-        changedTicks = size(missingsTicks, 1);
+        changedTicks = size(missingTicks, 1);
 
         newTicks = TAGData(missingTicks) + baseTimeSeparation; % contains the time stamp of the missing TAG ticks
         TAGData = [TAGData ; newTicks]; % concatenate both arrays, placing new values in the end (simple and straight-forward)
