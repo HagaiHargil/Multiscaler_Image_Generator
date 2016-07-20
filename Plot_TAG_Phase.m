@@ -24,13 +24,20 @@ while changedTicks ~= 0
     diffVec(abs(diffVec) <= allowedNoise) = 0; % if allowed noise is greater than the difference, we zero the cell
     missingTicks = find(diffVec) + 1; % finding all non-zero values. We wrote +1 because of the first cell that was neglected
     
+    % Check input vector
+    if size(missingTicks, 1) > 0.2 * size(diffVec, 1)
+        InterpData = NaN;
+        InterpData = table(InterpData);
+        return;
+    end
+    
     if isempty(missingTicks)
         changedTicks = 0;
     else
         changedTicks = size(missingTicks, 1);
 
         newTicks = TAGData(missingTicks) + baseTimeSeparation; % contains the time stamp of the missing TAG ticks
-        TAGData = [TAGData ; newTicks]; % concatenate both arrays, placing new values in the end (simple and straight-forward)
+        TAGData = [TAGData ; newTicks]; % concatenate both arrays, placing new values in the end (simple and straight-forward, we sort them later)
 
         missingTicks = [];
         newTicks = [];
@@ -48,10 +55,9 @@ deltaTime = endTime - startTime;
 
 % Now we'll find the first relevant event (only after the first TAG pulse)
 indexInData = find(Data(:,1) >= TAGData(2,1), 1);
-currentData = Data(indexInData:indexInData + 10000, 1); % assuming no more than 10,000 photons will arrive in every TAG period
+currentData = Data(indexInData:indexInData + 10000, 1); % assuming no more than 10,000 photons will arrive in every TAG period. Don't change the 10k number light-headedly
 
-% Outer loop will go through TAG events, inner while loop goes through data
-% points. CURRENTLY ASSUMING THE TAG PULSE IS AT 0 PHASE!!!
+% CURRENTLY ASSUMING THE TAG PULSE IS AT 0 PHASE!!!
 for indexInTAG = 3:(size(TAGData, 1) - 1)
     currentData(:, 1) = currentData(:, 1) - startTime;
     dataToBeSent = currentData(currentData(:, 1) <= deltaTime, 1);

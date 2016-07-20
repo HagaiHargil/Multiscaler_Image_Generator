@@ -1,4 +1,4 @@
-function [RawImage] = PhotonSpreadToImage2(CurrentEvents, SizeX, SizeY, EdgeX, EdgeY)
+function [RawImage] = PhotonSpreadToImage2(CurrentEvents, EdgeX, EdgeY)
 
 %% Building a histogram of photon locations
 Edges = {EdgeX EdgeY};

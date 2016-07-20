@@ -126,13 +126,13 @@ while (currentIterationNum <= numOfFiles_int)
     
     fprintf('\n%d data vector(s) created successfully. \nGenerating photon array...\n', num_of_data_vectors);
 
-%% Create the photon array of lines
 
+    %% Create the photon array of lines
 valueSet2 = {6, 1, 2};
 keySet2 = {START, STOP1, STOP2};
 input_channels = containers.Map(keySet2, valueSet2);
 %input_channels(1) is the PMT data.
-[PhotonArray, NumOfLines, StartOfFrameChannel, MaxNumOfEventsInLine, TotalEvents, PMTChannelNum] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, input_channels(1));
+[PhotonArray, NumOfLines, StartOfFrameChannel, MaxNumOfEventsInLine, TotalEvents, PMTChannelNum, MaxDiffOfLines] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, input_channels(1));
 fprintf('Finished creating the photon array. Creating Raw image...\n');
 
 %% Determine which data channel contains frame data
@@ -155,13 +155,19 @@ if InterpolateTAGLens
     mapData = containers.Map(keySet3, valueSet3);
     
     InterpData = Plot_TAG_Phase(mapData(input_channels(1)), TAGFreq, mapData(input_channels(5))); 
-    mapData(input_channels(1)) = InterpData;
-    fprintf('TAG lens data interpolated successfully. Generating imaging...\n');
+    
+    if ~isnan(InterpData{1,1})
+        PhotonArray = [PhotonArray, table2array(InterpData(:,4))];
+
+        fprintf('TAG lens data interpolated successfully. Generating image...\n');
+    else
+        fprintf('TAG input channel was incorrect. Proceeding to generate image...\n');
+    end
 end
 
 %% Create Images
 
-RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents);
+RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines);
 
 %% Save Results
 

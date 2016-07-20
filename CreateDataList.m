@@ -8,7 +8,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 
-function [DataArray, MaxNumOfEventsInLine] = CreateDataList(Num_of_Events, Num_of_Lines, DataEvents, DataLines)
+function [DataArray, MaxNumOfEventsInLine, MaxDiffOfLines] = CreateDataList(Num_of_Events, Num_of_Lines, DataEvents, DataLines)
 
 if Num_of_Lines == 0
     DataArray(:,1) = DataEvents.Time_of_Arrival(:);
@@ -22,6 +22,7 @@ StartingTimeOfLine = zeros(1, Num_of_Lines);
 StartingTimeOfLine(1,1:2:end) = table2array(DataLines(:,1))'; % odd cells receive the original numbers
 HalfDiffVector = round(diff(DataLines.Time_of_Arrival(:)) ./ 2);
 StartingTimeOfLine(1,2:2:end) = DataLines.Time_of_Arrival(1:end - 1) + HalfDiffVector; % even cells receive half of that number
+MaxDiffOfLines = max(diff(StartingTimeOfLine(1, :)));
 
 %% Create the full data vector
 DataArray = NaN(Num_of_Events, 2); % Initialize the full data cell array
@@ -44,7 +45,11 @@ for CurrentLine = 1:Num_of_Lines - 1
         MaxNumOfEventsInLine = max(MaxNumOfEventsInLine, NumOfEventsInLine + 1);
         CurrentDataNumber = CurrentDataNumber + 1;
         NumOfEventsInLine = NumOfEventsInLine + 1;
+      
     end
+    %% Flip frames and lines
+    
+    %%
     LastUsedLine = LastUsedLine + NumOfEventsInLine;
     NumOfEventsInLine = 0;
 end
@@ -55,6 +60,6 @@ DataArray(isnan(DataArray)) = StartingTimeOfLine(1, end);
 %% Substract the line time from photon arrival times to receive relative arrival times
 DataArray(:,1) = DataArray(:,1) - DataArray(:,2);
 
-%% Flip frames and lines
+%% 
 
 end

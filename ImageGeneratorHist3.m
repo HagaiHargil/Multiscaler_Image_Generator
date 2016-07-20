@@ -1,7 +1,8 @@
-function RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents)
+function RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines)
 
-RawImagesMat = zeros(SizeX, SizeY, size(StartOfFrameVec, 1) - 1,'uint16'); % Last half-recorded frame won't be imaged
+RawImagesMat = zeros(SizeX, SizeY, max(size(StartOfFrameVec, 1) - 1, 1),'uint16'); % Last half-recorded frame won't be imaged
 CurrentFrameNum = 1;
+
 %% Create histograms
 if (isempty(StartOfFrameVec) && (NumOfLines == 0)) % A single frame that has no line data
     CurrentEvents = PhotonArray;
@@ -36,20 +37,50 @@ else
             CurrentEvents = PhotonArray;
         end
         
-        %% Calculate edge vector of image (for hist3 function)
-        MaxDiffInStarts = max(diff(CurrentEvents(:,2)));
-        if MaxDiffInStarts ~= 0
-            EdgeX = linspace(0, MaxDiffInStarts, SizeX);
-        elseif isempty(MaxDiffInStarts)
+        %% Check if we have TAG phase data and calculate edge vector of image (for hist3 function)
+ 
+        % X is responsible for TAG\line data
+        if MaxDiffOfLines ~= 0
+            EdgeX = linspace(0, MaxDiffOfLines, SizeX); 
+        elseif isempty(MaxDiffOfLines)
             continue;
         else
             EdgeX = linspace(0, CurrentEvents(1,2), SizeX);
+        end  
+
+        if size(PhotonArray, 2) < 3
+            TAGPhaseUse = 0;
+            EdgeY = linspace(CurrentEvents(1,2), CurrentEvents(end,2), SizeY);
+        else
+            CurrentEvents(:, 3) = abs(sin(CurrentEvents(:, 3)));
+            TAGPhaseUse = 1;
+            finiteEvents = CurrentEvents(isfinite(CurrentEvents(:,3)), :);
+            CurrentEvents = finiteEvents; % We throw out all photons without TAG phase
+            sumOfEvents = CurrentEvents(:,1) + CurrentEvents(:,2);
+            CurrentEvents(:,1) = sumOfEvents; 
+           
+            %% 
+            EdgeX = linspace(0, 1, SizeX);
+            EdgeY = linspace(min(CurrentEvents(:,1)), max(CurrentEvents(:,1)), SizeY);
+            %%
+            RawImagesMat(:,:,CurrentFrameNum) = PhotonSpreadToImage2(CurrentEvents(:,[1 3]), EdgeY, EdgeX);
         end
 
-        EdgeY = linspace(CurrentEvents(1,2), CurrentEvents(end,2), SizeY);
-
         %% Run hist3
-        RawImagesMat(:,:,CurrentFrameNum) = PhotonSpreadToImage2(CurrentEvents, SizeX, SizeY, EdgeX, EdgeY);
+        if ~TAGPhaseUse
+            RawImagesMat(:,:,CurrentFrameNum) = PhotonSpreadToImage2(CurrentEvents(:,1:2), EdgeX, EdgeY);
+            oddLines = RawImagesMat(1:2:end, :, CurrentFrameNum);
+            oddLines = fliplr(oddLines);
+            RawImagesMat(1:2:end,:,CurrentFrameNum) = oddLines;
+        end
+        
+        %% Flip the frames of image
+        if mod(CurrentFrameNum, 2) == 0
+            RawImagesMat(:,:,CurrentFrameNuM) = flipud(RawImagesMat(:,:,CurrentFrameNum));
+         
+        end
+        
+        %% Show image
         imagesc(RawImagesMat(:,:,CurrentFrameNum))
     end
 end
