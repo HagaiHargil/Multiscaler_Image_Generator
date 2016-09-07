@@ -19,9 +19,13 @@ end
 
 %% Create basic vector of start-of-line times
 StartingTimeOfLine = zeros(1, Num_of_Lines);
-StartingTimeOfLine(1,1:2:end) = table2array(DataLines(:,1))'; % odd cells receive the original numbers
-HalfDiffVector = round(diff(DataLines.Time_of_Arrival(:)) ./ 2);
-StartingTimeOfLine(1,2:2:end) = DataLines.Time_of_Arrival(1:end - 1) + HalfDiffVector; % even cells receive half of that number
+StartingTimeOfLine(1,:) = table2array(DataLines(:,1))';
+
+%% COMMENTED OUT FOLLOWING USE OF SCANIMAGE 7.9.16
+% StartingTimeOfLine(1,1:2:end) = table2array(DataLines(:,1))'; % odd cells receive the original numbers
+% HalfDiffVector = round(diff(DataLines.Time_of_Arrival(:)) ./ 2);
+% StartingTimeOfLine(1,2:2:end) = DataLines.Time_of_Arrival(1:end - 1) + HalfDiffVector; % even cells receive half of that number
+%%
 MaxDiffOfLines = max(diff(StartingTimeOfLine(1, :)));
 
 %% Create the full data vector
