@@ -126,13 +126,18 @@ while (currentIterationNum <= numOfFiles_int)
     
     fprintf('\n%d data vector(s) created successfully. \nGenerating photon array...\n', num_of_data_vectors);
 
+    
+%% TEMPORARY FOR SCANIMAGE 25 August 2016
 
-    %% Create the photon array of lines
+%     STOP2_Dataset.Time_of_Arrival = STOP2_Dataset.Time_of_Arrival + 1e6;
+
+    
+%% Create the photon array of lines
 valueSet2 = {6, 1, 2};
 keySet2 = {START, STOP1, STOP2};
 input_channels = containers.Map(keySet2, valueSet2);
 %input_channels(1) is the PMT data.
-[PhotonArray, NumOfLines, StartOfFrameChannel, MaxNumOfEventsInLine, TotalEvents, PMTChannelNum, MaxDiffOfLines] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, input_channels(1));
+[PhotonArray, NumOfLines, StartOfFrameChannel, MaxNumOfEventsInLine, TotalEvents, PMTChannelNum, MaxDiffOfLines, MaxDiffOfLines2] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, input_channels(1));
 fprintf('Finished creating the photon array. Creating Raw image...\n');
 
 %% Determine which data channel contains frame data
@@ -154,10 +159,12 @@ if InterpolateTAGLens
     valueSet3 = {STOP1_Dataset, STOP2_Dataset, START_Dataset};
     mapData = containers.Map(keySet3, valueSet3);
     
+
+    
     InterpData = Plot_TAG_Phase(mapData(input_channels(1)), TAGFreq, mapData(input_channels(5))); 
     
     if ~isnan(InterpData{1,1})
-        PhotonArray = [PhotonArray, table2array(InterpData(:,4))];
+        PhotonArray = [PhotonArray, table2array(InterpData(:,end))];
 
         fprintf('TAG lens data interpolated successfully. Generating image...\n');
     else
@@ -165,17 +172,44 @@ if InterpolateTAGLens
     end
 end
 
+%% TAG Phase sanity check
+
+% figure('windowStyle','docked');
+% xi = 1 : 100000;
+% plot(table2array(InterpData(xi,1)), sin(table2array(InterpData(xi,4))),'.-', ...
+% table2array(STOP2_Dataset(xi,1)),zeros(size(table2array(STOP2_Dataset(xi,1)))),'.')
+% xlim([0 xi(end)])
+
+%% Attempting to guess when each frame starts:
+
+NumGuessedFrames = 3;
+
+StartOfFrameVec = linspace(1,PhotonArray(end,2) , NumGuessedFrames+1)';
+
+
 %% Create Images
 
-RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines);
+
+% RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines);
+[RawImagesMat] = ImageGeneratorHist5(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines, MaxDiffOfLines2);
+
+% for n = 1:6
+%     subplot(3,2,n)
+%     OffsetPhase = 0.2 * (n-1) * pi; 
+%     RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines, OffsetPhase);
+%     title(num2str(OffsetPhase));
+% end
+%% Raw Histogram Inspection
+%  histogram( PhotonArray(:,1) + PhotonArray(:,2) , 1e5);
+
 
 %% Save Results
 
-% MySaver;
+ MySaver;
 
 %% Display Outcome
 
-DisplayOutcome;
+% DisplayOutcome;
 
     %% Update while loop parameters
     if useIteration
@@ -196,3 +230,17 @@ DisplayOutcome;
         break; % When a specific file was chosen run the loop once
     end
 end
+
+%% 
+
+figure;
+subplot(2,1,1);
+plot(   diff(STOP2_Dataset.Time_of_Arrival) .* 800e-12, '.-');
+xlabel('Line number');
+ylabel('dt [seconds]');
+title('STOP2 time intervals between successive line triggers')
+subplot(2,1,2);
+plot(   diff(START_Dataset.Time_of_Arrival)  .* 800e-12, '.-');
+xlabel('Line number');
+ylabel('dt [seconds]');
+title('START time intervals between successive line triggers')
