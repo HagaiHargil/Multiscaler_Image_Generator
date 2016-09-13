@@ -30,7 +30,7 @@ function varargout = Multiscaler_GUI(varargin)
 
 % Edit the above text to modify the response to help Multiscaler_GUI
 
-% Last Modified by GUIDE v2.5 14-Jul-2016 17:23:57
+% Last Modified by GUIDE v2.5 13-Sep-2016 18:01:12
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -532,3 +532,59 @@ function checkbox2_Callback(hObject, eventdata, handles)
 % Hint: get(hObject,'Value') returns toggle state of checkbox2
 
 assignin('base', 'InterpolateTAGLens', get(hObject,'Value'));
+
+
+
+function SizeZ_Callback(hObject, eventdata, handles)
+% hObject    handle to SizeZ (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of SizeZ as text
+%        str2double(get(hObject,'String')) returns contents of SizeZ as a double
+assignin('base', 'SizeZ', str2double(get(hObject,'String')));
+
+% --- Executes during object creation, after setting all properties.
+function SizeZ_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to SizeZ (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+assignin('base', 'SizeZ', str2double(get(hObject,'String')));
+
+
+function num_of_frames_Callback(hObject, eventdata, handles)
+% hObject    handle to num_of_frames (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of num_of_frames as text
+%        str2double(get(hObject,'String')) returns contents of num_of_frames as a double
+assignin('base', 'num_of_frames', str2double(get(hObject,'String')));
+
+% --- Executes during object creation, after setting all properties.
+function num_of_frames_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to num_of_frames (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+assignin('base', 'num_of_frames', str2double(get(hObject,'String')));
+
+% --- Executes on button press in Start_of_frame_from_slow_galvo.
+function Start_of_frame_from_slow_galvo_Callback(hObject, eventdata, handles)
+% hObject    handle to Start_of_frame_from_slow_galvo (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of Start_of_frame_from_slow_galvo
+assignin('base', 'use_slow_galvo_for_frames', get(hObject,'Value'));

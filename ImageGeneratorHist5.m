@@ -1,6 +1,4 @@
-function RawImagesMat = ImageGeneratorHist5(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines, MaxDiffOfLines2)
-
-SizeZ = SizeX; % Until we define SizeZ in the GUI;
+function RawImagesMat = ImageGeneratorHist5(PhotonArray, SizeX, SizeY, SizeZ, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines, MaxDiffOfLines2)
 
 % Changing SizeX to SizeX-1 if using histcounts2 instead of hist3
 % RawImagesMat = zeros(SizeX-1, SizeY-1, max(size(StartOfFrameVec, 1) - 1, 1),'uint16'); % Last half-recorded frame won't be imaged
@@ -105,7 +103,7 @@ else
             title(strcat(['Plane ', num2str(k), ' out of ', num2str(SizeZ), ' planes']))
             pause(0.05);
 
-            axis tight
+            axis image
         end
         
 %         imagesc(log(double(RawImagesMat(:,:,CurrentFrameNum)+1)))
