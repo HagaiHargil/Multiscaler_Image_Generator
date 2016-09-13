@@ -7,9 +7,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 
-function [binary_data, time_patch, range] = LSTDataRead(FileName)
+function [binary_data, time_patch, range] = LSTDataRead(FileName, folder_of_file)
 
-fileID = fopen(FileName);
+fileID = fopen(strcat(folder_of_file, FileName));
 
 %% Find the range value
 formatSpec = 'range=%d';

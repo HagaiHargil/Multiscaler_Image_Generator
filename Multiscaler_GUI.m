@@ -95,9 +95,10 @@ function FileName = pushbutton2_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-FileName = uigetfile('*.lst')
+[FileName folder_of_file] = uigetfile('*.lst')
 set(handles.nameOfFile, 'String', FileName);
 assignin('base','FileName', FileName);
+assignin('base','folder_of_file', folder_of_file);
 
 
 % --- Executes on button press in pushbutton3.

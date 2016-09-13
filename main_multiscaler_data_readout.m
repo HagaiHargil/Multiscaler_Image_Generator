@@ -68,7 +68,7 @@ currentIterationNum = 1;
 while (currentIterationNum <= numOfFiles_int)
     %% Data Read
     fprintf('Reading file... ');
-    [Binary_Data, Time_Patch, Range] = LSTDataRead(FileName);
+    [Binary_Data, Time_Patch, Range] = LSTDataRead(FileName, folder_of_file);
     fprintf('File read successfully. Time patch value is %s. \nCreating data vectors... ', Time_Patch);
 
     %% Create map for all possible time patch values
