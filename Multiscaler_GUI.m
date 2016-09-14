@@ -166,7 +166,7 @@ function popupmenu2_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-set(hObject,'Value',3);
+set(hObject,'Value',5);
 contents = cellstr(get(hObject,'String'));
 assignin('base', 'START', get(hObject,'Value'));
 

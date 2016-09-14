@@ -132,7 +132,7 @@ valueSet2 = {6, 1, 2};
 keySet2 = {START, STOP1, STOP2};
 input_channels = containers.Map(keySet2, valueSet2);
 %input_channels(1) is the PMT data.
-[PhotonArray, NumOfLines, StartOfFrameChannel, MaxNumOfEventsInLine, TotalEvents, PMTChannelNum, MaxDiffOfLines, MaxDiffOfLines2] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, input_channels(1));
+[PhotonArray, NumOfLines, StartOfFrameChannel, MaxNumOfEventsInLine, TotalEvents, PMTChannelNum, MaxDiffOfLines] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, input_channels(1));
 fprintf('Finished creating the photon array. Creating Raw image...\n');
 
 %% Determine which data channel contains frame data
@@ -173,8 +173,8 @@ end
 
 
 % RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines);
-[RawImagesMat] = ImageGeneratorHist5(PhotonArray, SizeX, SizeY, SizeZ, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines, MaxDiffOfLines2);
-
+%[RawImagesMat] = ImageGeneratorHist5(PhotonArray, SizeX, SizeY, SizeZ, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines, MaxDiffOfLines2);
+[RawImagesMat] = ImageGeneratorHist5(PhotonArray, SizeX, SizeY, SizeZ, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines);
 % for n = 1:6
 %     subplot(3,2,n)
 %     OffsetPhase = 0.2 * (n-1) * pi; 

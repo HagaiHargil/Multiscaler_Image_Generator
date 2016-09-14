@@ -45,7 +45,8 @@ else
         % X is responsible for TAG\line data
         if MaxDiffOfLines ~= 0
             EdgeX = linspace(0, MaxDiffOfLines,     SizeX);
-            EdgeZ = linspace(0, MaxDiffOfLines2,    SizeZ); 
+            %EdgeZ = linspace(0, MaxDiffOfLines2,    SizeZ); 
+            EdgeZ = linspace(-1, 1, SizeZ);
         elseif isempty(MaxDiffOfLines)
             continue;
         else
@@ -53,8 +54,8 @@ else
         end  
 
         %% Modified by LG 08.09.2016
-%         if size(PhotonArray, 2) < 3
-        if size(PhotonArray, 2) < 5
+         if size(PhotonArray, 2) < 3
+%       if size(PhotonArray, 2) < 5
         %% end of modification 08.09.2016   
             TAGPhaseUse = 0;
             EdgeY = linspace(CurrentEvents(1,2), CurrentEvents(end,2), SizeY);
@@ -63,14 +64,14 @@ else
 %             CurrentEvents(:, 3) = abs(sin(CurrentEvents(:, 3)));
 %             OffsetPhase = 0.5 .* pi;
             OffsetPhase = 0; % if necessary, add OffsetPhase as an input parameter
-            CurrentEvents(:, 3) = 0.5 .* (1 + sin(CurrentEvents(:, 3) + OffsetPhase));
+            CurrentEvents(:, 3) = cos(CurrentEvents(:, 3) + OffsetPhase);
             
             
             TAGPhaseUse = 1;
             finiteEvents = CurrentEvents(isfinite(CurrentEvents(:,3)), :);
             CurrentEvents = finiteEvents; % We throw out all photons without TAG phase
-            sumOfEvents = CurrentEvents(:,1) + CurrentEvents(:,2);
-            CurrentEvents(:,1) = sumOfEvents; 
+%             sumOfEvents = CurrentEvents(:,1) + CurrentEvents(:,2);
+%             CurrentEvents(:,1) = sumOfEvents; 
            
 %             %% 
 %             % Modified by LG 27 July 2016 
@@ -82,10 +83,11 @@ else
         end
 
         %% Run hist3
-        if ~TAGPhaseUse
+ %       if ~TAGPhaseUse
+  EdgeY = linspace(CurrentEvents(1,2), CurrentEvents(end,2), SizeY);
             RawImagesMat{CurrentFrameNum} = uint16( PhotonSpreadToImage3(CurrentEvents(:,1:3), EdgeX, EdgeY, EdgeZ) );
 %             RawImagesMat(:,:,CurrentFrameNum) = PhotonSpreadToImage2(CurrentEvents(:,1:2), EdgeX, EdgeY);
-        end
+%        end
         
         %% Flip the frames of image - only relevant for MPScope
 %         if mod(CurrentFrameNum, 2) == 0

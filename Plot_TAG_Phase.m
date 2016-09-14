@@ -2,7 +2,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % File name: "Plot_TAG_Phase.m"                                %
 % Purpose: When the user desires it take data from PMT and TAG %
-% lens and find the phase of each data point in the TAG        %
+% lens and finds the phase of each data point in the TAG        %
 % period. Note that it adds another column to existing data    %
 % table containing phase data, between 0 and 2pi.              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
