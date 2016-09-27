@@ -39,17 +39,19 @@ end
 
 %% Create the data table
 Time_of_Arrival = sort(Time_of_Arrival);
-Data_Lost = zeros(size(Data_Readings, 1),1);
-if size(Data_Readings, 1) == 1
-    cell_help = cell(1, 2);
-    cell_help{1,1} = Time_of_Arrival; cell_help{1,2} = Data_Lost;
-    Final_Dataset = cell2table(cell_help, 'VariableNames', {'Time_of_Arrival' 'Data_Lost'});
-else
-    Final_Dataset = table(Time_of_Arrival, Data_Lost);
-end
-
-%% Add first row of zeros (signaling the first start event which is unrecorded)
-cell_help = cell(1, 2);
-cell_help{1,1} = 0; cell_help{1,2} = 0;
-Final_Dataset = [cell2table(cell_help, 'VariableNames', {'Time_of_Arrival', 'Data_Lost'}); Final_Dataset];
+Final_Dataset = Time_of_Arrival;
+% 
+% Data_Lost = zeros(size(Data_Readings, 1),1);
+% if size(Data_Readings, 1) == 1
+%     cell_help = cell(1, 2);
+%     cell_help{1,1} = Time_of_Arrival; cell_help{1,2} = Data_Lost;
+%     Final_Dataset = cell2table(cell_help, 'VariableNames', {'Time_of_Arrival' 'Data_Lost'});
+% else
+%     Final_Dataset = table(Time_of_Arrival, Data_Lost);
+% end
+% 
+% %% Add first row of zeros (signaling the first start event which is unrecorded)
+% cell_help = cell(1, 2);
+% cell_help{1,1} = 0; cell_help{1,2} = 0;
+% Final_Dataset = [cell2table(cell_help, 'VariableNames', {'Time_of_Arrival', 'Data_Lost'}); Final_Dataset];
 end

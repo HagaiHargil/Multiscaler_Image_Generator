@@ -38,6 +38,7 @@ else
 end
 
 %% Check inputs from GUI
+
 % Existing file in folder
 if ~exist('FileName', 'var')
     error('No file chosen.');
@@ -69,11 +70,11 @@ currentIterationNum = 1;
 while (currentIterationNum <= numOfFiles_int)
     %% Data Read
     fprintf('Reading file... ');
-    [Binary_Data, Time_Patch, Range] = LSTDataRead(FileName, folder_of_file);
-    fprintf('File read successfully. Time patch value is %s. \nCreating data vectors... ', Time_Patch);
+    [Binary_Data, timePatch, Range] = LSTDataRead(FileName, folder_of_file);
+    fprintf('File read successfully. Time patch value is %s. \nCreating data vectors... ', timePatch);
 
     %% Create map for all possible time patch values
-    num_of_data_vectors = 0;
+    numOfDataVectors = 0;
     keySet = {'32', '1a', '43', '2', '2a', '22', '5b', 'Db', 'f3', 'c3', '3'};
     valueSet = {'CreateDataVector32(Binary_Data, CurrentChannel, double(Range));', ...
         'CreateDataVector1a(Binary_Data, CurrentChannel, double(Range));', ...
@@ -89,7 +90,7 @@ while (currentIterationNum <= numOfFiles_int)
     };
 % WHEN ADDING A NEW TIME PATCH DON'T FORGET TO UPDATE LST_DATAREAD AND THE
 % CREATE DATA VECOTR FUNCTION
-    mapObj = containers.Map(keySet, valueSet);
+    mapForTimePatch = containers.Map(keySet, valueSet);
     
     %% Time patch choice - go through each channel and extract its data
     if STOP1 == 8
@@ -97,9 +98,9 @@ while (currentIterationNum <= numOfFiles_int)
         STOP1_Dataset = [];
     else
         CurrentChannel = 1;
-        STOP1_Dataset = eval(mapObj(Time_Patch));
+        STOP1_Dataset = eval(mapForTimePatch(timePatch));
         if ~isempty(STOP1_Dataset)
-            num_of_data_vectors = num_of_data_vectors + 1;
+            numOfDataVectors = numOfDataVectors + 1;
         end
     end
     
@@ -108,9 +109,9 @@ while (currentIterationNum <= numOfFiles_int)
         STOP2_Dataset = [];
     else
         CurrentChannel = 2;
-        STOP2_Dataset = eval(mapObj(Time_Patch));
+        STOP2_Dataset = eval(mapForTimePatch(timePatch));
         if ~isempty(STOP2_Dataset)
-            num_of_data_vectors = num_of_data_vectors + 1;
+            numOfDataVectors = numOfDataVectors + 1;
         end
     end
     
@@ -119,20 +120,20 @@ while (currentIterationNum <= numOfFiles_int)
         START_Dataset = [];
     else
         CurrentChannel = 6;
-        START_Dataset = eval(mapObj(Time_Patch));
+        START_Dataset = eval(mapForTimePatch(timePatch));
         if ~isempty(START_Dataset)
-            num_of_data_vectors = num_of_data_vectors + 1;
+            numOfDataVectors = numOfDataVectors + 1;
         end
     end
     
-    fprintf('\n%d data vector(s) created successfully. \nGenerating photon array...\n', num_of_data_vectors);
+   
 
 %% Create the photon array of lines
 valueSet2 = {6, 1, 2};
 keySet2 = {START, STOP1, STOP2};
 input_channels = containers.Map(keySet2, valueSet2);
 %input_channels(1) is the PMT data.
-[PhotonArray, NumOfLines, StartOfFrameChannel, MaxNumOfEventsInLine, TotalEvents, PMTChannelNum, MaxDiffOfLines] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, input_channels(1));
+[PhotonArray, NumOfLines, StartOfFrameChannel, MaxNumOfEventsInLine, TotalEvents, PMTChannelNum, MaxDiffOfLines, MaxDiffOfLines2] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, input_channels(1));
 fprintf('Finished creating the photon array. Creating Raw image...\n');
 
 %% Determine which data channel contains frame data
@@ -157,9 +158,9 @@ if InterpolateTAGLens
     fprintf('TAG lens data being interpolated...\n');
     keySet3 = {1, 2, 6};
     valueSet3 = {STOP1_Dataset, STOP2_Dataset, START_Dataset};
-    mapData = containers.Map(keySet3, valueSet3);
+    mapOfDataVectors = containers.Map(keySet3, valueSet3);
     
-    InterpData = Plot_TAG_Phase(mapData(input_channels(1)), TAGFreq, mapData(input_channels(5))); 
+    InterpData = Plot_TAG_Phase(mapOfDataVectors(input_channels(1)), TAGFreq, mapOfDataVectors(input_channels(5))); 
     
     if ~isnan(InterpData{1,1})
         PhotonArray = [PhotonArray, table2array(InterpData(:,end))];
@@ -173,17 +174,7 @@ end
 
 
 % RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines);
-%[RawImagesMat] = ImageGeneratorHist5(PhotonArray, SizeX, SizeY, SizeZ, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines, MaxDiffOfLines2);
-[RawImagesMat] = ImageGeneratorHist5(PhotonArray, SizeX, SizeY, SizeZ, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines);
-% for n = 1:6
-%     subplot(3,2,n)
-%     OffsetPhase = 0.2 * (n-1) * pi; 
-%     RawImagesMat = ImageGeneratorHist3(PhotonArray, SizeX, SizeY, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines, OffsetPhase);
-%     title(num2str(OffsetPhase));
-% end
-%% Raw Histogram Inspection
-%  histogram( PhotonArray(:,1) + PhotonArray(:,2) , 1e5);
-
+[RawImagesMat] = ImageGeneratorHist5(PhotonArray, SizeX, SizeY, SizeZ, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines, MaxDiffOfLines2);
 
 %% Save Results
 

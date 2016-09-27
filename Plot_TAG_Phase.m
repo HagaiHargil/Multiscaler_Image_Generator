@@ -1,14 +1,16 @@
+
+
+function [InterpData] = Plot_TAG_Phase(DataAsTable, frequency, TAGData)
+
 %% Script info
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % File name: "Plot_TAG_Phase.m"                                %
 % Purpose: When the user desires it take data from PMT and TAG %
-% lens and finds the phase of each data point in the TAG        %
+% lens and finds the phase of each data point in the TAG       %
 % period. Note that it adds another column to existing data    %
 % table containing phase data, between 0 and 2pi.              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
-
-function [InterpData] = Plot_TAG_Phase(DataAsTable, frequency, TAGData)
 
 %% First we make sure that the TAG data is regular and there are no missing lines
 % Define frequency and noise levels
@@ -41,10 +43,11 @@ while changedTicks ~= 0
 
         missingTicks = [];
         newTicks = [];
+        TAGData = sort(TAGData);
     end
 end
 
-TAGData = sort(TAGData);
+
 
 %% Now we use the corrected TAG data vector and interpolate a sinusoidal wave across the entire range
 Data = table2array(DataAsTable(:, 1));

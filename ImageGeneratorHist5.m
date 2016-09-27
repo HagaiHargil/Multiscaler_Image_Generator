@@ -1,9 +1,12 @@
 function RawImagesMat = ImageGeneratorHist5(PhotonArray, SizeX, SizeY, SizeZ, StartOfFrameVec, NumOfLines, TotalEvents, MaxDiffOfLines, MaxDiffOfLines2)
 
-% Changing SizeX to SizeX-1 if using histcounts2 instead of hist3
-% RawImagesMat = zeros(SizeX-1, SizeY-1, max(size(StartOfFrameVec, 1) - 1, 1),'uint16'); % Last half-recorded frame won't be imaged
-% RawImagesMat = zeros(SizeX, SizeY, max(size(StartOfFrameVec, 1) - 1, 1),'uint16'); % Last half-recorded frame won't be imaged
-
+%% Script info
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% File name: "ImageGeneratorHist5.m"                           %
+% Purpose: Creates a histogram of a 3D matrix (4D in total),   %
+% one for each frame of the dataset.                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 CurrentFrameNum = 1;
 
 %% Create histograms
@@ -34,10 +37,10 @@ else
     for CurrentFrameNum = 1:max(1, size(StartOfFrameVec, 1) - 1) % If a frame isn't complete an image won't be generated from it
 
         %% Take relevant data
-        if ~isempty(StartOfFrameVec)
-            CurrentEvents = PhotonArray((PhotonArray(:,2) >= StartOfFrameVec(CurrentFrameNum, 1) & (PhotonArray(:,2) < StartOfFrameVec(CurrentFrameNum + 1, 1))),:); % Only photons that came in the specific time interval of the CurrentFrameNum's frame
-        else
+        if isempty(StartOfFrameVec)
             CurrentEvents = PhotonArray;
+        else
+            CurrentEvents = PhotonArray((PhotonArray(:,2) >= StartOfFrameVec(CurrentFrameNum, 1) & (PhotonArray(:,2) < StartOfFrameVec(CurrentFrameNum + 1, 1))),:); % Only photons that came in the specific time interval of the CurrentFrameNum's frame
         end
         
         %% Check if we have TAG phase data and calculate edge vector of image (for hist3 function)
@@ -45,7 +48,6 @@ else
         % X is responsible for TAG\line data
         if MaxDiffOfLines ~= 0
             EdgeX = linspace(0, MaxDiffOfLines,     SizeX);
-            %EdgeZ = linspace(0, MaxDiffOfLines2,    SizeZ); 
             EdgeZ = linspace(-1, 1, SizeZ);
         elseif isempty(MaxDiffOfLines)
             continue;

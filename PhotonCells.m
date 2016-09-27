@@ -12,7 +12,7 @@
 % CreateDataList - 
 %%
 
-function [PhotonArray, Num_of_Lines, StartOfFramesChannel, MaxNumOfEventsInLine, TotalEvents, PMTChannelNum, MaxDiffOfLines] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, PMT_Channel_Num)
+function [PhotonArray, Num_of_Lines, StartOfFramesChannel, MaxNumOfEventsInLine, TotalEvents, PMTChannelNum, MaxDiffOfLines, MaxDiffOfLines2] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, PMT_Channel_Num)
 
 PMTChannelNum = PMT_Channel_Num;
 % The switch determines which channel contains the photon arrival time data. 
@@ -53,7 +53,8 @@ switch PMT_Channel_Num
 %                 %% END OF 12.09.2016 MODIFICATION
 %                 %% ADDED BY LG 08.09.2016
                   [PhotonArray, MaxNumOfEventsInLine, MaxDiffOfLines] = CreateDataList(TotalEvents, numel(STOP2_Dataset.Time_of_Arrival), STOP1_Dataset, STOP2_Dataset);
-%                 PhotonArray = [PhotonArray PhotonArray2];
+                  MaxDiffOfLines2 = 0;
+                  PhotonArray = [PhotonArray PhotonArray2];
 %                 %% END OF 08.09.2016 ADDITION
             else
                 % Num_of_Lines = numel(STOP2_Dataset.Time_of_Arrival) .* 2 - 1; % Each start-of-line signal tells us that two lines have passed.

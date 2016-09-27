@@ -9,6 +9,8 @@
 
 function [binary_data, time_patch, range] = LSTDataRead(FileName, folder_of_file)
 
+fprintf('Reading file... ');
+
 fileID = fopen(strcat(folder_of_file, FileName));
 
 %% Find the range value

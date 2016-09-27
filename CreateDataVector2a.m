@@ -51,16 +51,18 @@ end
 
 %% Send out the data table
 Time_of_Arrival = sort(Time_of_Arrival);
-if size(Data_Readings, 1) == 1
-    cell_help = cell(1, 3);
-    cell_help{1,1} = Time_of_Arrival; cell_help{1,2} = Sweep_Counter; cell_help{1,3} = TAG_Bits;
-    Final_Dataset = cell2table(cell_help, 'VariableNames', {'Time_of_Arrival' 'Sweep_Counter' 'TAG_Bits'});
-else
-    Final_Dataset = table(Time_of_Arrival, Sweep_Counter, TAG_Bits);
-end
+Final_Dataset = Time_of_Arrival;
 
-%% Add first row of zeros (signaling the first start event which is unrecorded)
-cell_help = cell(1, 3);
-cell_help(:,:) = {0};
-Final_Dataset = [cell2table(cell_help, 'VariableNames', {'Time_of_Arrival' 'Sweep_Counter' 'TAG_Bits'}); Final_Dataset];
+% if size(Data_Readings, 1) == 1
+%     cell_help = cell(1, 3);
+%     cell_help{1,1} = Time_of_Arrival; cell_help{1,2} = Sweep_Counter; cell_help{1,3} = TAG_Bits;
+%     Final_Dataset = cell2table(cell_help, 'VariableNames', {'Time_of_Arrival' 'Sweep_Counter' 'TAG_Bits'});
+% else
+%     Final_Dataset = table(Time_of_Arrival, Sweep_Counter, TAG_Bits);
+% end
+% 
+% %% Add first row of zeros (signaling the first start event which is unrecorded)
+% cell_help = cell(1, 3);
+% cell_help(:,:) = {0};
+% Final_Dataset = [cell2table(cell_help, 'VariableNames', {'Time_of_Arrival' 'Sweep_Counter' 'TAG_Bits'}); Final_Dataset];
 end
