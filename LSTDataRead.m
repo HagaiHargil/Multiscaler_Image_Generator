@@ -17,8 +17,9 @@ range_cell = textscan(fileID, formatSpec, 'HeaderLines', 1);
 range_before_bit_depth = cell2mat(range_cell);
 
 %% Find the bit depth value
-formatSpec = 'bitshift=%d';
+formatSpec = 'bitshift=%s';
 bitshift_cell = textscan(fileID, formatSpec, 'HeaderLines', 32);
+bitshift_cell{1,1} = hex2dec(char(bitshift_cell{1,1}));
 bitshift = mod(bitshift_cell{1,1}, 100);
 range = range_before_bit_depth * 2^(bitshift);
 
@@ -44,8 +45,8 @@ end
 hex_data = textscan(fileID, formatSpec);
 
 %% Depending on time_patch number, read the data vector accordingly
-keySet = {'32', '1a', '43', '2', '2a', '22', '5b', 'Db', 'f3', 'c3', '3'};
-valueSet ={48, 48, 64, 48, 48, 48, 64, 64, 64, 64, 64}; 
+keySet = {'32', '1a', '43', '2', '2a', '22', '5b', 'Db', 'f3', 'c3', '3', '1'};
+valueSet ={48, 48, 64, 48, 48, 48, 64, 64, 64, 64, 64, 32}; 
 % WHEN ADDING A NEW TIME PATCH DON'T FORGET TO UPDATE MAIN SCRIPT AND THE
 % CREATE DATA VECOTR FUNCTION
 mapObj = containers.Map(keySet, valueSet);

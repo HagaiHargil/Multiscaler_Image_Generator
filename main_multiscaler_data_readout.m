@@ -65,16 +65,18 @@ end
 
 %% 
 currentIterationNum = 1;
-
+tic
 while (currentIterationNum <= numOfFiles_int)
     %% Data Read
     fprintf('Reading file... ');
-    [Binary_Data, Time_Patch, Range] = LSTDataRead(FileName, folder_of_file);
+    [Binary_Data, Time_Patch, Range] = LSTDataRead(FileName, folderOfFiles);
+    toc
+    tic
     fprintf('File read successfully. Time patch value is %s. \nCreating data vectors... ', Time_Patch);
 
     %% Create map for all possible time patch values
     num_of_data_vectors = 0;
-    keySet = {'32', '1a', '43', '2', '2a', '22', '5b', 'Db', 'f3', 'c3', '3'};
+    keySet = {'32', '1a', '43', '2', '2a', '22', '5b', 'Db', 'f3', 'c3', '3', '1'};
     valueSet = {'CreateDataVector32(Binary_Data, CurrentChannel, double(Range));', ...
         'CreateDataVector1a(Binary_Data, CurrentChannel, double(Range));', ...
         'CreateDataVector43(Binary_Data, CurrentChannel, double(Range));', ...
@@ -86,6 +88,7 @@ while (currentIterationNum <= numOfFiles_int)
         'CreateDataVectorf3(Binary_Data, CurrentChannel, double(Range));', ...
         'CreateDataVectorc3(Binary_Data, CurrentChannel, double(Range));', ...
         'CreateDataVector3(Binary_Data, CurrentChannel, double(Range));', ...
+        'CreateDataVector1(Binary_Data, CurrentChannel, double(Range));', ...
     };
 % WHEN ADDING A NEW TIME PATCH DON'T FORGET TO UPDATE LST_DATAREAD AND THE
 % CREATE DATA VECOTR FUNCTION
@@ -124,8 +127,11 @@ while (currentIterationNum <= numOfFiles_int)
             num_of_data_vectors = num_of_data_vectors + 1;
         end
     end
-    
+
+    toc
+    tic
     fprintf('\n%d data vector(s) created successfully. \nGenerating photon array...\n', num_of_data_vectors);
+
 
 %% Create the photon array of lines
 valueSet2 = {6, 1, 2};
@@ -133,7 +139,10 @@ keySet2 = {START, STOP1, STOP2};
 input_channels = containers.Map(keySet2, valueSet2);
 %input_channels(1) is the PMT data.
 [PhotonArray, NumOfLines, StartOfFrameChannel, MaxNumOfEventsInLine, TotalEvents, PMTChannelNum, MaxDiffOfLines] = PhotonCells(START_Dataset, STOP1_Dataset, STOP2_Dataset, input_channels(1));
+toc
+tic
 fprintf('Finished creating the photon array. Creating Raw image...\n');
+
 
 %% Determine which data channel contains frame data
 if use_slow_galvo_for_frames
@@ -160,6 +169,9 @@ if InterpolateTAGLens
     mapData = containers.Map(keySet3, valueSet3);
     
     InterpData = Plot_TAG_Phase(mapData(input_channels(1)), TAGFreq, mapData(input_channels(5))); 
+
+    toc
+    tic
     
     if ~isnan(InterpData{1,1})
         PhotonArray = [PhotonArray, table2array(InterpData(:,end))];
@@ -186,9 +198,11 @@ end
 
 
 %% Save Results
-
+toc
+tic
+fprintf('Saving MAT file and TIFF file...\n');
  MySaver;
-
+toc;
 %% Display Outcome
 
 % DisplayOutcome;
