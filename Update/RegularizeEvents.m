@@ -11,7 +11,8 @@ function [mapSortedEventsVectors] = RegularizeEvents(inputChannels, mapOfDataVec
 mapSortedEventsVectors = containers.Map(keys(mapOfDataVectors), values(mapOfDataVectors)); % sorting out the line events without changing original data
 
 for n = [1 2 6]
-    eventsVector = mapSortedEventsVectors(n);
+    helpVec = mapSortedEventsVectors(n);
+    eventsVector = [helpVec(:).absoluteTime];
     
     %% Skipping the channel with the PMT data and empty channels
     if ((n == inputChannels(1)) || (isempty(eventsVector)))
