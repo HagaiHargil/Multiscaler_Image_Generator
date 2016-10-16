@@ -42,12 +42,12 @@ def vecData(fileName, startOfDataPos, timePatch, dataRange):
     df.drop(df.columns[[1, 2]], axis = 1, inplace = True) # delete unnecessary columns
     
     # %% Start going through the dataFormat vector and extract the bits
-    df_afterTimepatch = timepatchManager.ChoiceManager().process(timePatch, dataRange, df)
+    dfAfterTimepatch = timepatchManager.ChoiceManager().process(timePatch, dataRange, df)
             
     # %% use pyCUDA for sorting
     # Create arrays for sort
-    dfPhotons = df[df['channel'] == '001']
-    dfLines = df[df['channel'] == '010']
+    dfPhotons = dfAfterTimepatch[dfAfterTimepatch['channel'] == '001']
+    dfLines = dfAfterTimepatch[dfAfterTimepatch['channel'] == '010']
     
     # Sort
     dfPhotons['line1']
