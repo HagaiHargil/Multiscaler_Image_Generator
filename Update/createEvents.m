@@ -16,13 +16,15 @@ helpCell = cell(hexData); % this line and the next one are unneeded if
 helpCell = cellfun(@char, helpCell, 'UniformOutput', false);
 
 if mod(dataFormat.otherThanTime, 4) == 0 % all timepatches besides timepatch == 3
+    tic;
     parfor n = 1:numOfEvents
        allEvents(n) = createSingleEvent(helpCell{n}, dataFormat, range, hexToBinMap); % A single event each time
        % changed helpCell{n} to char(hexData{n}) when trying to parfor
        % Python lists
     end
+    toc;
 else % only timepatch == 3
-    parfor n = 0:numOfEvents
+    for n = 0:numOfEvents
        allEvents(n) = createSingleEvent3(hexData{n}, hexToBinMap);
     end
 end

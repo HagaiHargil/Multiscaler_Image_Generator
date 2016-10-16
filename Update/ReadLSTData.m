@@ -1,4 +1,4 @@
-function [hexData, dataFormat, range] = ReadLSTData(fileName, folderOfFile)
+function data = ReadLSTData(fileName, folderOfFile)
 %% Script info
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % File name: "ReadLSTData.m"                                   %
@@ -50,8 +50,11 @@ hexData = dataOneLine.splitlines();
 %% Depending on timePatch number, read the data vector accordingly
 dataFormat = determineDataFormat(timePatch);
 
+%% Python pandas dataframe 
+import py.vectorizeData.vecData
+data = py.vectorizeData.vecData(fileName, ftell(fileID) + 2, dataFormat(timePatch), range);
+
 %%
 fclose(fileID);
-f.close();
 fprintf('File read successfully. Time patch value is %s. Total number of events: %d.\nCreating data vectors... ', timePatch, size(hexData, 2));
 end
