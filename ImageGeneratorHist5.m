@@ -35,7 +35,7 @@ if (isempty(StartOfFrameVec) && (NumOfLines == 0)) % A single frame that has no 
     imagesc(RawImagesMat(:,:,CurrentFrameNum))
 else
     for CurrentFrameNum = 1:max(1, size(StartOfFrameVec, 1) - 1) % If a frame isn't complete an image won't be generated from it
-
+        
         %% Take relevant data
         if isempty(StartOfFrameVec)
             CurrentEvents = PhotonArray;

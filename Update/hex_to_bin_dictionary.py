@@ -4,8 +4,7 @@ Created on Sun Oct 16 15:39:35 2016
 
 @author: Hagai
 """
-
-def hexToBinDict():
+def hex_to_bin_dict():
     diction = \
     {
         '0': '0000',
