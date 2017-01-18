@@ -23,11 +23,11 @@ fileName = 'C:\Users\Hagai\Documents\GitHub\Multiscaler_Image_Generator\Update\P
 
 f = open(fileName, 'r')
 f.seek(1553)
-print 'Using Pythons splitlines method:'
+print('Using Pythons splitlines method:')
 start = time.time()
 P = f.read()
 P2 = P.splitlines()
-print 'It took', time.time()-start, 'seconds.'
+print('It took', time.time()-start, 'seconds.')
 f.close()
 P = None
 
