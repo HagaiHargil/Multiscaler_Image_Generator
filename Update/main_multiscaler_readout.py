@@ -27,10 +27,15 @@ def main_data_readout(filename):
     df_allocated = lst_tools.allocate_photons(df=df_after_timepatch)
 
     return df_allocated
-    
+
 if __name__ == '__main__':
     # file_name = 'PMT1_Readings_one_sweep_equals_one_frame.lst'
-    file_name = 'live mouse  100 um deep with 62p TAG001.lst'
+    # file_name = 'live mouse  100 um deep with 62p TAG001.lst'
+    # file_name = 'Tilted fixed sample - TAG 190 kHz 62 percent - both galvos on - 99 percent power - 450 gain - DISCONNECTED GALVO Y.lst'
+    # file_name ='multiscaler_check_code_2_channels_0-1_sec.lst'
+    # file_name = 'live mouse  100 um deep with 62p TAG010.lst'
+    # file_name = 'fixed sample - XY image - 500 gain - 1 second acquisition.lst'
+    file_name = 'TAG ON start channel, galvo on stop 2 - gain 480.lst'
     df_after = main_data_readout(file_name)
 
 

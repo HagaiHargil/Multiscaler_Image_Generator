@@ -60,9 +60,9 @@ if ((Polygon_X_TAG_bit_start > Polygon_X_TAG_bit_end) || (Polygon_X_TAG_bit_star
 end
 
 % Tag lens data
-if ((TAGFreq <= 0) || (TAGFreq > 193))
-    error('Invalid TAG lens frequency.');
-end
+%if ((TAGFreq <= 0) || (TAGFreq > 193))
+%    error('Invalid TAG lens frequency.');
+%end
 
 %% 
 currentIterationNum = 1;

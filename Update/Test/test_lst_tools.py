@@ -14,29 +14,27 @@ class TddLstTools(unittest.TestCase):
                           r'..\TAG ON start channel, galvo on stop 2 - gain 480.lst']
 
     list_of_real_start_loc = [1548, 1549, 1549, 1553, 1553, 1749, 1486]
+    list_of_real_time_patch = ['32', '32', '32', '32', '32', '32', '2']
+    list_of_real_range = [1232704 * 2 ** 9, 4065600 * 2 ** 8, 8388608 * 2 ** 10, 50009600 * 2 ** 3,
+                          8589934592, 80000000 * 2 ** 4, 8388608 * 2 ** 11]
 
     def test_check_range_extraction(self):
         from Update.lst_tools import get_range
-
-        list_of_real_range = [1232704 * 2 ** 9, 4065600 * 2 ** 8, 8388608 * 2 ** 10, 50009600 * 2 ** 3,
-                              8589934592, 80000000 * 2 ** 4, 8388608 * 2 ** 11]
 
         list_of_returned_range = []
         for fname in self.list_of_file_names:
             list_of_returned_range.append(get_range(fname))
 
-        self.assertEqual(list_of_real_range, list_of_returned_range)
+        self.assertEqual(self.list_of_real_range, list_of_returned_range)
 
-    def test_check_time_patch_extractions(self):
+    def test_check_time_patch_extraction(self):
         from Update.lst_tools import get_timepatch
-
-        list_of_real_time_patch = ['32', '32', '32', '32', '32', '32', '2']
 
         list_of_returned_time_patch = []
         for fname in self.list_of_file_names:
             list_of_returned_time_patch.append(get_timepatch(fname))
 
-        self.assertEqual(list_of_real_time_patch, list_of_returned_time_patch)
+        self.assertEqual(self.list_of_real_time_patch, list_of_returned_time_patch)
 
     def test_check_start_of_data_value(self):
         from Update.lst_tools import get_start_pos
@@ -49,16 +47,25 @@ class TddLstTools(unittest.TestCase):
 
     def test_first_line_of_input(self):
         from Update.lst_tools import read_lst_file
+        from Update.lst_tools import timepatch_sort
 
         list_of_first_event = ['010000002759', '01000000c659', '010000000159', '0100000002e6', '0100000006d9',
                                '0100000060d9', '0000000196a6']
+        list_of_first_times = ['629', '3173', '21', '46', '109', '1549', '6506']
+
         list_of_returned_events = []
+        list_of_returned_times = []
 
         for idx, fname in enumerate(self.list_of_file_names):
-            first_event = read_lst_file(fname, self.list_of_real_start_loc[idx])['raw'][0]
+            df = read_lst_file(fname, self.list_of_real_start_loc[idx])
+            first_event = df['raw'][0]
             list_of_returned_events.append(first_event)
 
+            list_of_returned_times.append(timepatch_sort(df, self.list_of_real_time_patch[idx], self.list_of_real_range[idx])['abs_time'][0])
+
         self.assertEqual(list_of_first_event, list_of_returned_events)
+        self.assertEqual(list_of_first_times, list_of_first_times)
+
 
 if __name__ == '__main__':
     unittest.main()

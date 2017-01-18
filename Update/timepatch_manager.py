@@ -107,21 +107,18 @@ class ChoiceManager:
     def timePatch_32(self, data_range, df):
         def b16(x): return int(x, 16)
         def b22(x): return int(x, 2)
-            
-        df['abs_time'] = df['raw'].str[2:-1]
-        df['abs_time'] = df['abs_time'].apply(b16)
-        
-        df['bin'] = df['raw'].str[0:2]
-        df['bin'] = df['bin'].apply(hextobin)
-        df['sweep'] = df['bin'].str[3:10]
-        df['sweep'] = df['sweep'].apply(b22)
+
+        df['abs_time'] = df['raw'].str[2:-1].apply(b16)
+
+        df['bin'] = df['raw'].str[0:2].apply(hextobin)
+        df['sweep'] = df['bin'].str[1:].apply(b22)
         df['abs_time'] = df['abs_time'] + (df['sweep'] - 1) * data_range
         
         df['tag'] = 0        
         
-        df['lost'] = df['bin'].str[2]
+        df['lost'] = df['bin'].str[0]
         
-        df.drop(['bin'], axis = 1, inplace = True)
+        df.drop(['bin'], axis=1, inplace=True)
         return df
         
     def timePatch_2(self, data_range, df):
