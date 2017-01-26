@@ -8,9 +8,7 @@ def main_data_readout(filename):
     """
     Main function that reads the lst file and processes its data.
     """
-    from Update import timepatch_manager
     from Update import lst_tools
-    import pandas as pd
 
     # Open file and find the needed parameters
     data_range = lst_tools.get_range(filename)

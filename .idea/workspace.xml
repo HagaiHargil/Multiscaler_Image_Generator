@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce72d029-62be-4914-a4dd-f8d27fa83d2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Update/Test/test_lst_tools.py" afterPath="$PROJECT_DIR$/Update/Test/test_lst_tools.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Update/filereadout.py" afterPath="$PROJECT_DIR$/Update/filereadout.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Update/lst_tools.py" afterPath="$PROJECT_DIR$/Update/lst_tools.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Update/main_multiscaler_readout.py" afterPath="$PROJECT_DIR$/Update/main_multiscaler_readout.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Update/timepatch_manager.py" afterPath="$PROJECT_DIR$/Update/timepatch_manager.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main_multiscaler_data_readout.m" afterPath="$PROJECT_DIR$/main_multiscaler_data_readout.m" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,18 +26,18 @@
       <file leaf-file-name="test_lst_tools.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Update/Test/test_lst_tools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1740">
-              <caret line="60" column="38" lean-forward="false" selection-start-line="60" selection-start-column="38" selection-end-line="60" selection-end-column="38" />
+            <state relative-caret-position="1160">
+              <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lst_tools.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="lst_tools.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Update/lst_tools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="212" column="0" lean-forward="true" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+            <state relative-caret-position="854">
+              <caret line="173" column="34" lean-forward="true" selection-start-line="173" selection-start-column="34" selection-end-line="173" selection-end-column="34" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -50,18 +48,20 @@
       <file leaf-file-name="timepatch_manager.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Update/timepatch_manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2349">
-              <caret line="81" column="12" lean-forward="false" selection-start-line="81" selection-start-column="12" selection-end-line="81" selection-end-column="12" />
-              <folding />
+            <state relative-caret-position="2131">
+              <caret line="82" column="8" lean-forward="true" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="8" />
+              <folding>
+                <element signature="e#84#102#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main_multiscaler_readout.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main_multiscaler_readout.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Update/main_multiscaler_readout.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="812">
-              <caret line="28" column="23" lean-forward="false" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+            <state relative-caret-position="290">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -80,9 +80,15 @@
     <findStrings>
       <find>absTime</find>
       <find>dict_of</find>
+      <find>.apply(self.vec_b16))</find>
+      <find>apply(b22)</find>
+      <find>timePatch</find>
     </findStrings>
     <replaceStrings>
       <replace>abs_time</replace>
+      <replace>.apply(self.vec_b16)</replace>
+      <replace>apply(self.vec_b22)</replace>
+      <replace>timepatch</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -105,11 +111,13 @@
         <option value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/7/StudentsHW/HW7question2_elor.py" />
         <option value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/Solution/Exer9Q1.py" />
         <option value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/Solution/Exer9Q2.py" />
-        <option value="$PROJECT_DIR$/../../Python Scripts/Gav/gav_number.py" />
-        <option value="$PROJECT_DIR$/Update/timepatch_manager.py" />
         <option value="$PROJECT_DIR$/Update/Test/test_lst_tools.py" />
         <option value="$PROJECT_DIR$/Update/main_multiscaler_readout.py" />
         <option value="$PROJECT_DIR$/Update/lst_tools.py" />
+        <option value="$PROJECT_DIR$/../../Python Scripts/Gav/gav_number.py" />
+        <option value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/8/StudentsHW/ex8_keith/ex8/ex82.py" />
+        <option value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/ex9.py_keith/ex9.py" />
+        <option value="$PROJECT_DIR$/Update/timepatch_manager.py" />
       </list>
     </option>
   </component>
@@ -119,9 +127,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="1942" />
-    <option name="height" value="1042" />
+    <option name="y" value="-1631" />
+    <option name="width" value="2902" />
+    <option name="height" value="1582" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -142,7 +150,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -171,111 +178,112 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="project.scopes" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/Solution" />
+    <property name="settings.editor.selected.configurable" value="preferences.intentionPowerPack" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Python Scripts/Gav/gav_number.py" />
     <property name="last.edited.regexp" value="" />
     <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="Multiscaler_Image_Generator" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="Multiscaler_Image_Generator" />
+      </console-settings>
+    </option>
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Hagai\Documents\Python Scripts\Gav" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main_multiscaler_readout">
-    <configuration default="false" name="baseline" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.Excercise9">
+    <configuration default="false" name="exercise9" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Program Files\Anaconda3\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../Python Scripts/Gav" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/assignment9_shahar/assignment9" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Multiscaler_Image_Generator" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../Python Scripts/Gav/baseline.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/assignment9_shahar/assignment9/exercise9.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <method />
     </configuration>
-    <configuration default="false" name="gav_number" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="HW9-q1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Program Files\Anaconda3\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../Python Scripts/Gav" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/elor" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Multiscaler_Image_Generator" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../Python Scripts/Gav/gav_number.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/elor/HW9-q1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <method />
     </configuration>
-    <configuration default="false" name="main_multiscaler_readout" type="PythonConfigurationType" factoryName="Python" singleton="true" temporary="true">
+    <configuration default="false" name="HW9-q2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Update" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="SDK_HOME" value="C:\Program Files\Anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/elor" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Multiscaler_Image_Generator" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Update/main_multiscaler_readout.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/elor/HW9-q2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <method />
     </configuration>
-    <configuration default="false" name="Nosetest TddLstTools.test_first_line_of_input" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="ex9" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Update/Test" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Program Files\Anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/ex9.py_keith" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Multiscaler_Image_Generator" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Update/Test/test_lst_tools.py" />
-      <option name="CLASS_NAME" value="TddLstTools" />
-      <option name="METHOD_NAME" value="test_first_line_of_input" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/ex9.py_keith/ex9.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <method />
     </configuration>
-    <configuration default="false" name="Nosetests in TddLstTools" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Excercise9" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Update/Test" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Program Files\Anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/ex9_ron" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Multiscaler_Image_Generator" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Update/Test/test_lst_tools.py" />
-      <option name="CLASS_NAME" value="TddLstTools" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_CLASS" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/ex9_ron/Excercise9.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="CompoundRunConfigurationType" factoryName="Compound Run Configuration">
@@ -416,24 +424,27 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.baseline" />
-      <item index="1" class="java.lang.String" itemvalue="Python.gav_number" />
-      <item index="2" class="java.lang.String" itemvalue="Python.main_multiscaler_readout" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Nosetest TddLstTools.test_first_line_of_input" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests in TddLstTools" />
+      <item index="0" class="java.lang.String" itemvalue="Python.exercise9" />
+      <item index="1" class="java.lang.String" itemvalue="Python.HW9-q1" />
+      <item index="2" class="java.lang.String" itemvalue="Python.HW9-q2" />
+      <item index="3" class="java.lang.String" itemvalue="Python.ex9" />
+      <item index="4" class="java.lang.String" itemvalue="Python.Excercise9" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.main_multiscaler_readout" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests in TddLstTools" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Nosetest TddLstTools.test_first_line_of_input" />
-        <item index="3" class="java.lang.String" itemvalue="Python.gav_number" />
-        <item index="4" class="java.lang.String" itemvalue="Python.baseline" />
+        <item index="0" class="java.lang.String" itemvalue="Python.Excercise9" />
+        <item index="1" class="java.lang.String" itemvalue="Python.ex9" />
+        <item index="2" class="java.lang.String" itemvalue="Python.HW9-q2" />
+        <item index="3" class="java.lang.String" itemvalue="Python.HW9-q1" />
+        <item index="4" class="java.lang.String" itemvalue="Python.exercise9" />
       </list>
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -446,14 +457,11 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetest_TddLstTools_test_first_line_of_input - 2017.01.17 at 19h 06m 53s.xml">
-      <configuration name="Nosetest TddLstTools.test_first_line_of_input" configurationId="tests" />
+    <history-entry file="Nosetest_TddLstTools_test_check_range_extraction - 2017.01.25 at 10h 27m 53s.xml">
+      <configuration name="Nosetest TddLstTools.test_check_range_extraction" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetest_TddLstTools_test_first_line_of_input - 2017.01.17 at 19h 07m 41s.xml">
-      <configuration name="Nosetest TddLstTools.test_first_line_of_input" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_TddLstTools - 2017.01.17 at 19h 07m 57s.xml">
-      <configuration name="Nosetests in TddLstTools" configurationId="tests" />
+    <history-entry file="Nosetest_TddLstTools_test_check_start_of_data_value - 2017.01.25 at 10h 27m 36s.xml">
+      <configuration name="Nosetest TddLstTools.test_check_start_of_data_value" configurationId="tests" />
     </history-entry>
     <history-entry file="Nosetests_in_TddLstTools - 2017.01.17 at 19h 29m 17s.xml">
       <configuration name="Nosetests in TddLstTools" configurationId="tests" />
@@ -462,6 +470,9 @@
       <configuration name="Nosetests in TddLstTools" configurationId="tests" />
     </history-entry>
     <history-entry file="Nosetests_in_TddLstTools - 2017.01.17 at 20h 06m 42s.xml">
+      <configuration name="Nosetests in TddLstTools" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_TddLstTools - 2017.01.25 at 11h 01m 24s.xml">
       <configuration name="Nosetests in TddLstTools" configurationId="tests" />
     </history-entry>
     <history-entry file="Nosetests_in_Test - 2017.01.08 at 23h 31m 31s.xml">
@@ -487,26 +498,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <frame x="-11" y="-1631" width="2902" height="1582" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18992043" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08330404" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298585" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31347728" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2901619" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22859271" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32836932" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29337305" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38346985" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24982207" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.56164384" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -520,13 +531,16 @@
           <line>22</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Update/lst_tools.py</url>
-          <line>206</line>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="42" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <default-breakpoints>
+        <breakpoint suspend="NONE" type="python-exception">
+          <properties exception="BaseException" />
+        </breakpoint>
+      </default-breakpoints>
+      <option name="time" value="45" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -535,124 +549,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Update/timepatch_manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2349">
-          <caret line="81" column="12" lean-forward="true" selection-start-line="81" selection-start-column="12" selection-end-line="81" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Update/main_multiscaler_readout.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="812">
-          <caret line="28" column="23" lean-forward="false" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Update/Test/test_lst_tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1827">
-          <caret line="63" column="19" lean-forward="false" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Update/lst_tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3045">
-          <caret line="105" column="43" lean-forward="false" selection-start-line="105" selection-start-column="43" selection-end-line="105" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Python Scripts/Gav/baseline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="18" column="46" lean-forward="false" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Python Scripts/Gav/gav_number.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Update/main_multiscaler_readout.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Update/Test/test_lst_tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="12" column="46" lean-forward="false" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Update/lst_tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Update/main_multiscaler_readout.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="13" lean-forward="true" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Update/timepatch_manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1131">
-          <caret line="39" column="22" lean-forward="true" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/8/Solution/plot_sawtooth.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Update/Test/test_lst_tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="841">
-          <caret line="29" column="50" lean-forward="true" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Update/lst_tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1160">
-          <caret line="40" column="72" lean-forward="true" selection-start-line="40" selection-start-column="72" selection-end-line="40" selection-end-column="72" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Update/vectorizeData.py" />
     <entry file="file://$PROJECT_DIR$/Update/filereadout.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -791,13 +687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/7/StudentsHW/HW7question1_elor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/7/StudentsHW/HW7question2_elor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
@@ -816,6 +705,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333">
           <caret line="487" column="14" lean-forward="true" selection-start-line="487" selection-start-column="14" selection-end-line="487" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -826,27 +716,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../Python Scripts/Gav/gav_number.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../Python Scripts/Gav/baseline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="29">
           <caret line="18" column="46" lean-forward="false" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="320" column="0" lean-forward="false" selection-start-line="320" selection-start-column="0" selection-end-line="320" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -857,37 +733,189 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="331" column="0" lean-forward="false" selection-start-line="331" selection-start-column="0" selection-end-line="331" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pandas/core/indexing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="1393" column="0" lean-forward="false" selection-start-line="1393" selection-start-column="0" selection-end-line="1393" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pandas/core/generic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="916" column="0" lean-forward="false" selection-start-line="916" selection-start-column="0" selection-end-line="916" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/7/StudentsHW/HW7question1_elor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="88" column="32" lean-forward="true" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/7/StudentsHW/question2_elor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3253">
+          <caret line="13" column="33" lean-forward="false" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Python Scripts/Gav/gav_number.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="796">
+          <caret line="53" column="56" lean-forward="false" selection-start-line="53" selection-start-column="56" selection-end-line="53" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/8/StudentsHW/ex8_keith/ex8/ex8.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#18#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/8/StudentsHW/ex8_keith/ex8/ex82.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#18#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/8/StudentsHW/ex8_keith/ex8/ex83.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="10" column="64" lean-forward="true" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#18#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/8/StudentsHW/exercise8_shahar.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#18#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/8/StudentsHW/Excercise8_Ron.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="47" column="87" lean-forward="true" selection-start-line="47" selection-start-column="87" selection-end-line="47" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/8/StudentsHW/HW8question1_elor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="10" column="45" lean-forward="true" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/assignment9_shahar/assignment9/exercise9.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="796">
+          <caret line="74" column="22" lean-forward="true" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#18#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/elor/HW9-q1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="754">
+          <caret line="54" column="33" lean-forward="true" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/elor/HW9-q2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="696">
+          <caret line="27" column="33" lean-forward="true" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/ex9.py_keith/ex9.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="622">
+          <caret line="65" column="26" lean-forward="true" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#18#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/ex9_ron/Excercise9.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="102" column="58" lean-forward="true" selection-start-line="102" selection-start-column="58" selection-end-line="102" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Update/Test/test_lst_tools.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1740">
-          <caret line="60" column="38" lean-forward="false" selection-start-line="60" selection-start-column="38" selection-end-line="60" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Update/main_multiscaler_readout.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="812">
-          <caret line="28" column="23" lean-forward="false" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Update/timepatch_manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2349">
-          <caret line="81" column="12" lean-forward="false" selection-start-line="81" selection-start-column="12" selection-end-line="81" selection-end-column="12" />
+        <state relative-caret-position="1160">
+          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Update/lst_tools.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="212" column="0" lean-forward="true" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
+        <state relative-caret-position="854">
+          <caret line="173" column="34" lean-forward="true" selection-start-line="173" selection-start-column="34" selection-end-line="173" selection-end-column="34" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Update/timepatch_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2131">
+          <caret line="82" column="8" lean-forward="true" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="8" />
+          <folding>
+            <element signature="e#84#102#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Update/main_multiscaler_readout.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

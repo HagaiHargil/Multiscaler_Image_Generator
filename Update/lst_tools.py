@@ -172,14 +172,14 @@ def timepatch_sort(df, timepatch: str = '', data_range: int = 0) -> pd.DataFrame
 
     # %% Analyze channel and edge information
     df['bin'] = df['raw'].str[-1].map(hex_to_bin)
-    df['channel'] = df['bin'].str[-3:]
-    df['edge'] = df['bin'].str[-4]
+    df['channel'] = df['bin'].str[-3:].astype(dtype='category')
+    df['edge'] = df['bin'].str[-4].astype(dtype='category')
     df.drop(['bin'], axis=1, inplace=True)
 
     # %% Start going through the dataFormat vector and extract the bits
     df_after_timepatch = timepatch_manager.ChoiceManager().process(timepatch, data_range, df)
-
-    if list(df_after_timepatch.columns) != ['raw', 'channel', 'edge', 'abs_time', 'sweep', 'tag', 'lost']:
+    df_after_timepatch.drop(['raw'], axis=1, inplace=True)
+    if list(df_after_timepatch.columns) != ['channel', 'edge', 'abs_time', 'sweep', 'tag', 'lost']:
         raise ValueError('Wrong dataframe created.')
 
     return df_after_timepatch
@@ -198,7 +198,7 @@ def allocate_photons(df=None) -> pd.DataFrame:
     df_photons = df[df['channel'] == '001'].reset_index(drop=True)
     df_lines = df[df['channel'] == '010'].reset_index(drop=True)
     # df_frame_start = df_after_timepatch[df_after_timepatch['channel'] == '100'].reset_index(drop=True)
-    df_laser_pulses = df[df['channel'] == '100'].reset_index(drop=True)
+    df_laser_pulses = df[df['channel'] == '110'].reset_index(drop=True)
 
     indices_photons_in_lines = np.searchsorted(df_lines['abs_time'], df_photons['abs_time']) - 1
     indices_photons_in_laser_pulses = np.searchsorted(df_laser_pulses['abs_time'], df_photons['abs_time']) - 1
@@ -207,6 +207,14 @@ def allocate_photons(df=None) -> pd.DataFrame:
     df_photons['photon_pulse_time'] = df_laser_pulses.loc[indices_photons_in_laser_pulses, 'abs_time'].values
     df_photons.dropna(axis=0, how='any', inplace=True)
 
-    df_photons.set_index(keys=['photon_line_time', 'photon_line_time'], inplace=True)
+    # Define relative times
+    df_photons['time_rel_line'] = df_photons['abs_time'] - df_photons['photon_line_time']
+    df_photons['time_rel_pulse'] = df_photons['abs_time'] - df_photons['photon_pulse_time']
+    df_photons.drop(['abs_time'], axis=1, inplace=True)
+
+    assert df_photons['time_rel_line'].any() > 0
+    assert df_photons['time_rel_line'].any() > 0
+
+    df_photons.set_index(keys=['photon_line_time', 'photon_pulse_time'], inplace=True)
 
     return df_photons
