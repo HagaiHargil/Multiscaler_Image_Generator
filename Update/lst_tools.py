@@ -1,5 +1,5 @@
 import pandas as pd
-from typing import Tuple, Dict
+import numpy as np
 
 def hex_to_bin_dict():
     """
@@ -184,7 +184,16 @@ def timepatch_sort(df, timepatch: str = '', data_range: int = 0) -> pd.DataFrame
 
     return df_after_timepatch
 
-def allocate_photons(df=None) -> pd.DataFrame:
+def create_frame_array(last_event_time: int=None, gui=None) -> np.ndarray:
+    """Create a pandas Series of start-of-frame times"""
+    if (last_event_time == None) or (gui == None):
+        raise ValueError('Wrong input detected.')
+
+    array_of_frames = np.linspace(start=0, stop=last_event_time, num=int(gui.num_of_frames.get()), endpoint=False)
+    return array_of_frames
+
+
+def allocate_photons(df=None, gui=None) -> pd.DataFrame:
     """
     Returns a dataframe in which each photon is a part of a frame, line and possibly laser pulse
     :param df: All events data
@@ -197,24 +206,46 @@ def allocate_photons(df=None) -> pd.DataFrame:
 
     df_photons = df[df['channel'] == '001'].reset_index(drop=True)
     df_lines = df[df['channel'] == '010'].reset_index(drop=True)
-    # df_frame_start = df_after_timepatch[df_after_timepatch['channel'] == '100'].reset_index(drop=True)
-    df_laser_pulses = df[df['channel'] == '110'].reset_index(drop=True)
+    help_dict = {
+        gui.input_start.get(): '110',
+        gui.input_stop1.get(): '001',
+        gui.input_stop2.get(): '010'
+        }
+    if 'Laser' in help_dict.keys():
+        df_first_index = df[df['channel'] == help_dict['Laser']].reset_index(drop=True)
+    else:
+        df_first_index = df[df['channel'] == help_dict['Frames']].reset_index(drop=True)
 
     indices_photons_in_lines = np.searchsorted(df_lines['abs_time'], df_photons['abs_time']) - 1
-    indices_photons_in_laser_pulses = np.searchsorted(df_laser_pulses['abs_time'], df_photons['abs_time']) - 1
+    indices_photons_in_first_index = np.searchsorted(df_first_index['abs_time'], df_photons['abs_time']) - 1
 
     df_photons['photon_line_time'] = df_lines.loc[indices_photons_in_lines, 'abs_time'].values
-    df_photons['photon_pulse_time'] = df_laser_pulses.loc[indices_photons_in_laser_pulses, 'abs_time'].values
+    df_photons['photon_first_index_time'] = df_first_index.loc[indices_photons_in_first_index, 'abs_time'].values
     df_photons.dropna(axis=0, how='any', inplace=True)
 
     # Define relative times
     df_photons['time_rel_line'] = df_photons['abs_time'] - df_photons['photon_line_time']
-    df_photons['time_rel_pulse'] = df_photons['abs_time'] - df_photons['photon_pulse_time']
-    df_photons.drop(['abs_time'], axis=1, inplace=True)
+    df_photons['time_rel_first_index'] = df_photons['abs_time'] - df_photons['photon_first_index_time']
+
+    last_event_time = int(df_photons['abs_time'].max())
+    df_photons['photon_line_time'] = df_photons['photon_line_time'].astype('category')
+    df_photons['photon_first_index_time'] = df_photons['photon_first_index_time'].astype('category')
 
     assert df_photons['time_rel_line'].any() > 0
-    assert df_photons['time_rel_line'].any() > 0
+    assert df_photons['time_rel_first_index'].any() > 0
 
-    df_photons.set_index(keys=['photon_line_time', 'photon_pulse_time'], inplace=True)
+    if df_first_index.shape[0] > df_lines.shape[0]:  # First index is laser pulses, we need to create frames
+        frame_array = create_frame_array(last_event_time=last_event_time, gui=gui)
+        indices_photons_in_frames = np.searchsorted(frame_array, df_photons['abs_time']) - 1
+        df_photons['photon_frame_time'] = frame_array[indices_photons_in_frames, 'abs_time'].values
+        df_photons['time_rel_frame'] = df_photons['abs_time'] - df_photons['photon_frame_time']
+
+        df_photons.drop(['abs_time'], axis=1, inplace=True)
+        df_photons.set_index(keys=['photon_frame_time', 'photon_line_time', 'photon_first_index_time'], inplace=True)
+    else:
+        df_photons.drop(['abs_time'], axis=1, inplace=True)
+        df_photons.set_index(keys=['photon_first_index_time', 'photon_line_time'], inplace=True)
+
+
 
     return df_photons
