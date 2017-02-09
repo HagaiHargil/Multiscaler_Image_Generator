@@ -6,6 +6,7 @@ Created on Thu Oct 13 09:37:02 2016
 """
 from gui import GUIApp
 from gui import verify_gui_input
+import numpy as np
 
 
 def main_data_readout(gui):
@@ -21,39 +22,37 @@ def main_data_readout(gui):
     start_of_data_pos = lst_tools.get_start_pos(gui.filename.get())
     
     # Read the file into a variable
+    print('Reading file...')
     df = lst_tools.read_lst_file(filename=gui.filename.get(), start_of_data_pos=start_of_data_pos)
-
+    print('File read. Sorting the file according to timepatch...')
     # Create a dataframe with all needed columns
     df_after_timepatch = lst_tools.timepatch_sort(df=df, timepatch=timepatch, data_range=data_range)
-
+    print('Sorted dataframe created. Starting the allocation process...')
+    # Assign the proper channels to their data and function
+    dict_of_data = lst_tools.determine_data_channels(df=df_after_timepatch, gui=gui)
+    print('Channels of events found. Creating relative times...')
     # Allocate photons to their frame and lines
-    df_allocated = lst_tools.allocate_photons(df=df_after_timepatch, gui=gui)
+    df_allocated = lst_tools.allocate_photons(dict_of_data=dict_of_data, gui=gui)
+    print('Relative times calculated. Creating Movie object...')
 
-    # Create a single frame object
+    # Create a movie object
+    frame_times = np.unique(df_allocated.index.get_level_values('Frames')).tolist()
+    fps = 1
+    movie = class_defs.Movie(data=df_allocated, num_of_cols=int(gui.x_pixels.get()),
+                             num_of_rows=int(gui.y_pixels.get()), reprate=float(gui.reprate.get()),
+                             list_of_frame_times=frame_times, name=gui.filename.get(), fps=fps)
+    movie.play()
 
-    num_of_lines = 512
-    num_of_rows = 512
-    frame_ordinal_number = 1
-    reprate = 80e6  # 80 MHz laser
-
-    #frame1 = class_defs.Frame(data=df_allocated, num_of_lines=num_of_lines, num_of_rows=num_of_rows,
-    #                          number=frame_ordinal_number, reprate=reprate)
-
-    #frame1.display()
-
-    return df_allocated
+    return df_allocated, movie
 
 if __name__ == '__main__':
-    # file_name = 'PMT1_Readings_one_sweep_equals_one_frame.lst'
-    # file_name = 'live mouse  100 um deep with 62p TAG001.lst'
-    # file_name = 'Tilted fixed sample - TAG 190 kHz 62 percent - both galvos on - 99 percent power - 450 gain - DISCONNECTED GALVO Y.lst'
-    # file_name ='multiscaler_check_code_2_channels_0-1_sec.lst'
-    # file_name = 'live mouse  100 um deep with 62p TAG010.lst'
-    # file_name = 'fixed sample - XY image - 500 gain - 1 second acquisition.lst'
-    # file_name = 'TAG ON start channel, galvo on stop 2 - gain 480.lst'
+
+    # root = tk.Tk()
+    # gui = GUIApp(root)
+    # gui.mainloop()
     gui = GUIApp()
     gui.root.mainloop()
-    verify_gui_input(gui)  # Still missing
-    df_after = main_data_readout(gui)
+    verify_gui_input(gui)
+    df_after, movie = main_data_readout(gui)
 
 

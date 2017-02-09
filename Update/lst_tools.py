@@ -192,60 +192,76 @@ def create_frame_array(last_event_time: int=None, gui=None) -> np.ndarray:
     array_of_frames = np.linspace(start=0, stop=last_event_time, num=int(gui.num_of_frames.get()), endpoint=False)
     return array_of_frames
 
+def create_line_array(last_event_time: int=None, gui=None) -> np.ndarray:
+    """Create a pandas Series of start-of-line times"""
+    if (last_event_time == None) or (gui == None):
+        raise ValueError('Wrong input detected.')
 
-def allocate_photons(df=None, gui=None) -> pd.DataFrame:
-    """
-    Returns a dataframe in which each photon is a part of a frame, line and possibly laser pulse
-    :param df: All events data
-    :return: pandas.DataFrame
-    """
-    import numpy as np
+    num_of_lines = 512  # NEEDS TO CHANGE SOMEDAY
+    total_lines = num_of_lines * int(gui.num_of_frames.get())
+    line_array = np.linspace(start=0, stop=last_event_time, num=total_lines)
+    return line_array
 
-    if df.shape[0] == 0:
+def determine_data_channels(df: pd.DataFrame=None, gui=None):
+    """Create a dictionary that contains the data in its ordered form."""
+
+    if df.empty:
         raise ValueError('Received dataframe was empty.')
 
-    df_photons = df[df['channel'] == '001'].reset_index(drop=True)
-    df_lines = df[df['channel'] == '010'].reset_index(drop=True)
-    help_dict = {
+    dict_of_inputs = {
         gui.input_start.get(): '110',
         gui.input_stop1.get(): '001',
         gui.input_stop2.get(): '010'
         }
-    if 'Laser' in help_dict.keys():
-        df_first_index = df[df['channel'] == help_dict['Laser']].reset_index(drop=True)
-    else:
-        df_first_index = df[df['channel'] == help_dict['Frames']].reset_index(drop=True)
 
-    indices_photons_in_lines = np.searchsorted(df_lines['abs_time'], df_photons['abs_time']) - 1
-    indices_photons_in_first_index = np.searchsorted(df_first_index['abs_time'], df_photons['abs_time']) - 1
+    dict_of_data = {}
+    for key in dict_of_inputs:
+        if key != 'Empty':
+            dict_of_data[key] = df.loc[df['channel'] == dict_of_inputs[key], 'abs_time'].reset_index(drop=True)
 
-    df_photons['photon_line_time'] = df_lines.loc[indices_photons_in_lines, 'abs_time'].values
-    df_photons['photon_first_index_time'] = df_first_index.loc[indices_photons_in_first_index, 'abs_time'].values
-    df_photons.dropna(axis=0, how='any', inplace=True)
-
-    # Define relative times
-    df_photons['time_rel_line'] = df_photons['abs_time'] - df_photons['photon_line_time']
-    df_photons['time_rel_first_index'] = df_photons['abs_time'] - df_photons['photon_first_index_time']
-
-    last_event_time = int(df_photons['abs_time'].max())
-    df_photons['photon_line_time'] = df_photons['photon_line_time'].astype('category')
-    df_photons['photon_first_index_time'] = df_photons['photon_first_index_time'].astype('category')
-
-    assert df_photons['time_rel_line'].any() > 0
-    assert df_photons['time_rel_first_index'].any() > 0
-
-    if df_first_index.shape[0] > df_lines.shape[0]:  # First index is laser pulses, we need to create frames
+    if 'Frames' not in dict_of_data.keys():  # A 'Frames' channel has to exist to create frames
+        last_event_time = int(dict_of_data['PMT1'].max())  # Assuming only data from PMT1 is relevant here
         frame_array = create_frame_array(last_event_time=last_event_time, gui=gui)
-        indices_photons_in_frames = np.searchsorted(frame_array, df_photons['abs_time']) - 1
-        df_photons['photon_frame_time'] = frame_array[indices_photons_in_frames, 'abs_time'].values
-        df_photons['time_rel_frame'] = df_photons['abs_time'] - df_photons['photon_frame_time']
+        dict_of_data['Frames'] = pd.Series(frame_array, name='abs_time')
 
-        df_photons.drop(['abs_time'], axis=1, inplace=True)
-        df_photons.set_index(keys=['photon_frame_time', 'photon_line_time', 'photon_first_index_time'], inplace=True)
-    else:
-        df_photons.drop(['abs_time'], axis=1, inplace=True)
-        df_photons.set_index(keys=['photon_first_index_time', 'photon_line_time'], inplace=True)
+    if 'Lines' not in dict_of_data.keys():  # A 'Lines' channel has to exist to create frames
+        last_event_time = dict_of_data['PMT1'].max()  # Assuming only data from PMT1 is relevant here
+        line_array = create_line_array(last_event_time=last_event_time, gui=gui)
+        dict_of_data['Lines'] = pd.Series(line_array, name='abs_time')
 
+    assert {'PMT1', 'Lines', 'Frames'} <= set(dict_of_data.keys())  # A is subset of B
+    return dict_of_data
 
+def allocate_photons(dict_of_data=None, gui=None) -> pd.DataFrame:
+    """
+    Returns a dataframe in which each photon is a part of a frame, line and possibly laser pulse
+    :param dict_of_data: All events data, distributed to its input channel
+    :return: pandas.DataFrame
+    """
+    import numpy as np
+
+    # Preparations
+    irrelevant_keys = {'PMT1', 'PMT2'}
+    relevant_keys = set(dict_of_data.keys()) - irrelevant_keys
+
+    df_photons = dict_of_data['PMT1']
+    df_photons = pd.DataFrame(df_photons)  # before this change it's a series with a name, not column head
+    column_heads = {'Lines': 'time_rel_line', 'Frames': 'time_rel_frames',
+                    'Laser': 'time_rel_pulse', 'TAG Lens': 'time_rel_tag'}
+
+    # Main loop - Sort lines and frames for all photons and calculate relative time
+    for key in relevant_keys:
+        sorted_indices = dict_of_data[key].searchsorted(dict_of_data['PMT1']) - 1
+        df_photons[key] = dict_of_data[key].loc[sorted_indices].values.copy()
+        df_photons[column_heads[key]] = df_photons['abs_time'] - df_photons[key]  # relative time of each photon in
+        #                                                                       accordance to the line\frame\laser pulse
+        assert df_photons[key].any() >= 0
+        df_photons[key] = df_photons[key].astype('category')
+        df_photons.set_index(keys=key, inplace=True, append=True, drop=True)
+
+    # Closure
+    df_photons.dropna(axis=0, how='any', inplace=True)  # NaNs are the result of photons not allocated to
+    #                                                     a 'secondary' signal, like a line or laser pulse
+    df_photons.drop(['abs_time'], axis=1, inplace=True)
 
     return df_photons

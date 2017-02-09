@@ -4,19 +4,44 @@ __author__ = Hagai Hargil
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
-import os
+
 
 def verify_gui_input(gui):
     """Validate all GUI inputs"""
-    pass
+    data_sources = set(gui.tuple_of_data_sources)
+    channel_inputs = {gui.input_start.get(), gui.input_stop1.get(), gui.input_stop2.get()}
+
+    if gui.input_start.get() != 'PMT1':
+        if gui.input_stop1.get() != 'PMT1':
+            if gui.input_stop2.get() != 'PMT1':
+                raise BrokenPipeError('PMT1 value has to be entered to inputs.')
+
+    if gui.num_of_frames.get() == '':
+        if 'Frames' not in data_sources:
+            raise BrokenPipeError('You must either enter a frame channel or number of frames.')
+    else:
+        try:
+            num_of_frames = int(gui.num_of_frames.get())
+        except ValueError:
+            raise ValueError('Please enter an integer number of frames.')
+        else:
+            if int(gui.num_of_frames.get()) <= 0:
+                raise ValueError('Number of frames has to be a positive number.')
+
+    filename = gui.filename.get()
+    if not filename.endswith('.lst'):
+        raise BrokenPipeError('Please choose a list (*.lst) file for analysis.')
+
+    if channel_inputs > data_sources:
+        raise ValueError('Wrong inputs in channels. Please choose a value from the list.')
 
 class GUIApp(object):
     """Main GUI for the multiscaler code"""
     def __init__(self):
         self.root = Tk()
         self.root.title("Multiscaler Readout and Display")
-        #self.root.rowconfigure(0, weight=1)
-        #self.root.columnconfigure(0, weight=1)
+        self.root.rowconfigure(5, weight=1)
+        self.root.columnconfigure(5, weight=1)
 
         # Part containing the browse for file option
         main_frame = ttk.Frame(self.root, width=800, height=800)
@@ -26,45 +51,75 @@ class GUIApp(object):
         self.filename = StringVar()
 
         browse_button = ttk.Button(main_frame, text="Browse", command=self.__browsefunc)
-        browse_button.grid(column=0, row=0)
+        browse_button.grid(column=0, row=0, sticky='ns')
 
         # Part containing the data about input channels
+        # Conboboxes
         self.input_start = StringVar()
         self.input_stop1 = StringVar()
         self.input_stop2 = StringVar()
-        tuple_of_data_sources = ('PMT1', 'PMT2', 'Lines', 'Frames', 'Laser', 'TAG Lens')
+        self.tuple_of_data_sources = ('PMT1', 'PMT2', 'Lines', 'Frames', 'Laser', 'TAG Lens', 'Empty')
         mb1 = ttk.Combobox(main_frame, textvariable=self.input_start)
-        mb1.grid(column=3, row=1)
+        mb1.grid(column=3, row=1, sticky='we')
         mb1.set('Frames')
-        mb1['values'] = tuple_of_data_sources
+        mb1['values'] = self.tuple_of_data_sources
         mb2 = ttk.Combobox(main_frame, textvariable=self.input_stop1)
-        mb2.grid(column=3, row=2)
+        mb2.grid(column=3, row=2, sticky='we')
         mb2.set('PMT1')
-        mb2['values'] = tuple_of_data_sources
+        mb2['values'] = self.tuple_of_data_sources
         mb3 = ttk.Combobox(main_frame, textvariable=self.input_stop2)
-        mb3.grid(column=3, row=3)
+        mb3.grid(column=3, row=3, sticky='we')
         mb3.set('Lines')
-        mb3['values'] = tuple_of_data_sources
+        mb3['values'] = self.tuple_of_data_sources
+        # Labels
+        input_channel_1 = ttk.Label(main_frame, text='START')
+        input_channel_1.grid(column=0, row=1, sticky='ns')
+        input_channel_2 = ttk.Label(main_frame, text='STOP1')
+        input_channel_2.grid(column=0, row=2, sticky='ns')
+        input_channel_3 = ttk.Label(main_frame, text='STOP2')
+        input_channel_3.grid(column=0, row=3, sticky='ns')
 
-        input_channel_1 = ttk.Label(text='START')
-        input_channel_1.grid(column=0, row=1)
-        input_channel_2 = ttk.Label(text='STOP1')
-        input_channel_2.grid(column=0, row=2)
-        input_channel_3 = ttk.Label(text='STOP2')
-        input_channel_3.grid(column=0, row=3)
-
+        # Number of frames in the dat
         frame_label = ttk.Label(main_frame, text='Number of frames')
-        frame_label.grid(column=0, row=3)
-        self.num_of_frames = StringVar()
+        frame_label.grid(column=0, row=4, sticky='ns')
+
+        self.num_of_frames = StringVar(value=1)
         num_frames_entry = ttk.Entry(main_frame, textvariable=self.num_of_frames)
-        num_frames_entry.grid(column=0, row=4)
+        num_frames_entry.grid(column=0, row=5, sticky='ns')
         num_frames_entry.focus()
+
+        # Define image sizes
+        image_size_label = ttk.Label(main_frame, text='Image sizes')
+        image_size_label.grid(column=5, row=0, sticky='ns')
+        x_size_label = ttk.Label(main_frame, text='X')
+        x_size_label.grid(column=4, row=1, sticky='ns')
+        y_size_label = ttk.Label(main_frame, text='Y')
+        y_size_label.grid(column=6, row=1, sticky='ns')
+
+        self.x_pixels = StringVar(value=512)
+        self.y_pixels = StringVar(value=512)
+
+        x_pixels_entry = ttk.Entry(main_frame, textvariable=self.x_pixels)
+        x_pixels_entry.grid(column=4, row=2, sticky='ns')
+        y_pixels_entry = ttk.Entry(main_frame, textvariable=self.y_pixels)
+        y_pixels_entry.grid(column=6, row=2, sticky='ns')
+
+        # Laser repetition rate
+        laser1_label = ttk.Label(main_frame, text='Laser nominal rep. rate (FLIM)')
+        laser1_label.grid(column=5, row=3, sticky='ns')
+        laser2_label = ttk.Label(main_frame, text='Pulses per second')
+        laser2_label.grid(column=6, row=4, sticky='ns')
+
+        self.reprate = StringVar(value=80e6)
+        reprate_entry = ttk.Entry(main_frame, textvariable=self.reprate)
+        reprate_entry.grid(column=5, row=4, sticky='ns')
 
         # Define the last quit button and wrap up GUI
         quit_button = ttk.Button(self.root, text='Start', command=self.root.destroy)
         quit_button.grid()
         self.root.bind('<Return>', quit_button)
-        for child in main_frame.winfo_children(): child.grid_configure(padx=2, pady=2)
+        for child in main_frame.winfo_children():
+            child.grid_configure(padx=2, pady=2)
         self.root.wait_window()
 
     def __browsefunc(self):
