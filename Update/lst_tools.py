@@ -1,5 +1,8 @@
 import pandas as pd
 import numpy as np
+from typing import Dict
+from numba import jit
+
 
 def hex_to_bin_dict():
     """
@@ -27,6 +30,7 @@ def hex_to_bin_dict():
         }
     return diction
 
+
 def create_data_length_dict():
     """
     CURRENTLY DEPRECATED
@@ -50,6 +54,7 @@ def create_data_length_dict():
             "3": 64
         }
     return dict_of_data_length
+
 
 def get_range(filename: str = '') -> int:
     """
@@ -127,11 +132,9 @@ def read_lst_file(filename: str = '', start_of_data_pos: int = 0) -> pd.DataFram
     Read the list file into a dataframe.
     :param filename: Name of list file.
     :param start_of_data_pos: The place in chars in the file that the data starts at.
-    :param data_length: A dictionary with the data length in binary as int
     :return: Dataframe with all events registered.
     """
-    import pandas as pd
-    #### TRIAL VERSION, DEPRECATED. TRY TO RAISE FROM DEAD ONLY IF CURRENT VERSION IS SLOW ###############
+    # TRIAL VERSION, DEPRECATED. TRY TO RAISE FROM DEAD ONLY IF CURRENT VERSION IS SLOW ###############
     # def binarize(str1):
     #     return "{0:0{1}b}".format(int(str1, 16), data_length)
     #
@@ -154,17 +157,20 @@ def read_lst_file(filename: str = '', start_of_data_pos: int = 0) -> pd.DataFram
     assert df.shape[0] > 0
     return df
 
-def timepatch_sort(df, timepatch: str = '', data_range: int = 0) -> pd.DataFrame:
+
+def timepatch_sort(df, timepatch: str='', data_range: int=0, input_channels: Dict=None) -> pd.DataFrame:
     """
     Takes a raw dataframe and sorts it to columns according to its timepatch value.
     :param df: Input DF.
     :param timepatch: Key by which we sort.
     :param data_range: Data range of file.
+    :parm input_channels: dictionary of actual input channels
     """
     from Update import timepatch_manager
 
+
     # Verify inputs
-    if df.shape[0] == 0 or timepatch == '' or data_range == 0:
+    if df.shape[0] == 0 or timepatch == '' or data_range == 0 or input_channels is None:
         raise ValueError("Wrong inputs inserted.")
 
     # Create dictionary for hex to bin conversion
@@ -176,7 +182,13 @@ def timepatch_sort(df, timepatch: str = '', data_range: int = 0) -> pd.DataFrame
     df['edge'] = df['bin'].str[-4].astype(dtype='category')
     df.drop(['bin'], axis=1, inplace=True)
 
-    # %% Start going through the dataFormat vector and extract the bits
+    # Before sorting all photons make sure that no input is missing from the user.
+    actual_data_channels = set(df['channel'].cat.categories.values)
+    if actual_data_channels != set(input_channels.values()):
+        raise UserWarning("Channels that were inserted in GUI don't match actual data channels recorded. \n"
+                              "Recorded channels are {}.".format(actual_data_channels))
+
+    # Start going through the df and extract the bits
     df_after_timepatch = timepatch_manager.ChoiceManager().process(timepatch, data_range, df)
     df_after_timepatch.drop(['raw'], axis=1, inplace=True)
     if list(df_after_timepatch.columns) != ['channel', 'edge', 'abs_time', 'sweep', 'tag', 'lost']:
@@ -184,67 +196,115 @@ def timepatch_sort(df, timepatch: str = '', data_range: int = 0) -> pd.DataFrame
 
     return df_after_timepatch
 
-def create_frame_array(last_event_time: int=None, gui=None) -> np.ndarray:
+
+def create_frame_array(last_event_time: int=None, num_of_frames=None) -> np.ndarray:
     """Create a pandas Series of start-of-frame times"""
-    if (last_event_time == None) or (gui == None):
+
+    if (last_event_time == None) or (num_of_frames == None):
         raise ValueError('Wrong input detected.')
 
-    array_of_frames = np.linspace(start=0, stop=last_event_time, num=int(gui.num_of_frames.get()), endpoint=False)
+    if last_event_time <= 0:
+        raise ValueError('Last event time is zero or negative.')
+
+    array_of_frames = np.linspace(start=0, stop=last_event_time, num=int(num_of_frames), endpoint=False)
     return array_of_frames
 
-def create_line_array(last_event_time: int=None, gui=None) -> np.ndarray:
+
+def create_line_array(last_event_time: int=None, num_of_lines=None, num_of_frames=None) -> np.ndarray:
     """Create a pandas Series of start-of-line times"""
-    if (last_event_time == None) or (gui == None):
+
+    if (last_event_time == None) or (num_of_lines == None) or (num_of_frames == None):
         raise ValueError('Wrong input detected.')
 
-    num_of_lines = 512  # NEEDS TO CHANGE SOMEDAY
-    total_lines = num_of_lines * int(gui.num_of_frames.get())
+    if (num_of_lines <= 0) or (num_of_frames <= 0):
+        raise ValueError('Number of lines and frames has to be positive.')
+
+    if last_event_time <= 0:
+        raise ValueError('Last event time is zero or negative.')
+
+    total_lines = num_of_lines * int(num_of_frames)
     line_array = np.linspace(start=0, stop=last_event_time, num=total_lines)
     return line_array
 
-def determine_data_channels(df: pd.DataFrame=None, gui=None):
-    """Create a dictionary that contains the data in its ordered form."""
+
+def create_inputs_dict(gui=None) -> Dict:
+    """
+    Create a dictionary for all input channels. Currently allows for three channels.
+    'Empty' channels will not be checked.
+    """
+
+    if gui == None:
+        raise ValueError('No GUI received.')
+
+    dict_of_inputs = {}
+
+    if gui.input_start.get() != 'Empty':
+        dict_of_inputs[gui.input_start.get()] = '110'
+
+    if gui.input_stop1.get() != 'Empty':
+        dict_of_inputs[gui.input_stop1.get()] = '001'
+
+    if gui.input_stop2.get() != 'Empty':
+        dict_of_inputs[gui.input_stop2.get()] = '010'
+
+    assert len(dict_of_inputs) >= 1
+    assert 'Empty' not in list(dict_of_inputs.keys())
+
+    return dict_of_inputs
+
+
+def determine_data_channels(df: pd.DataFrame=None, dict_of_inputs: Dict=None,
+                            num_of_frames: int=-1, num_of_rows: int=-1) -> Dict:
+    """ Create a dictionary that contains the data in its ordered form."""
 
     if df.empty:
         raise ValueError('Received dataframe was empty.')
 
-    dict_of_inputs = {
-        gui.input_start.get(): '110',
-        gui.input_stop1.get(): '001',
-        gui.input_stop2.get(): '010'
-        }
-
     dict_of_data = {}
     for key in dict_of_inputs:
-        if key != 'Empty':
-            dict_of_data[key] = df.loc[df['channel'] == dict_of_inputs[key], 'abs_time'].reset_index(drop=True)
-
-    if 'Frames' not in dict_of_data.keys():  # A 'Frames' channel has to exist to create frames
-        last_event_time = int(dict_of_data['PMT1'].max())  # Assuming only data from PMT1 is relevant here
-        frame_array = create_frame_array(last_event_time=last_event_time, gui=gui)
-        dict_of_data['Frames'] = pd.Series(frame_array, name='abs_time')
+        dict_of_data[key] = df.loc[df['channel'] == dict_of_inputs[key], 'abs_time'].reset_index(drop=True)
 
     if 'Lines' not in dict_of_data.keys():  # A 'Lines' channel has to exist to create frames
         last_event_time = dict_of_data['PMT1'].max()  # Assuming only data from PMT1 is relevant here
-        line_array = create_line_array(last_event_time=last_event_time, gui=gui)
+        line_array = create_line_array(last_event_time=last_event_time, num_of_lines=num_of_rows,
+                                       num_of_frames=num_of_frames)
         dict_of_data['Lines'] = pd.Series(line_array, name='abs_time')
 
+    if 'Frames' not in dict_of_data.keys():  # A 'Frames' channel has to exist to create frames
+        spacing_between_lines = np.abs(dict_of_data['Lines'].diff()).mean()
+        last_event_time = int(dict_of_data['PMT1'].max() + spacing_between_lines)  # Assuming only data from PMT1 is relevant here
+        frame_array = create_frame_array(last_event_time=last_event_time, num_of_frames=num_of_frames)
+        dict_of_data['Frames'] = pd.Series(frame_array, name='abs_time')
+    else:  # Add 0 to the first entry of the series
+        dict_of_data['Frames'] = pd.Series([0], name='abs_time').append(dict_of_data['Frames'], ignore_index=True)
+
+    # Validations
     assert {'PMT1', 'Lines', 'Frames'} <= set(dict_of_data.keys())  # A is subset of B
+    if dict_of_data['Frames'].shape[0] > dict_of_data['Lines'].shape[0]:  # more frames than lines
+        raise UserWarning('More frames than lines, replace the two.')
+
     return dict_of_data
 
-def allocate_photons(dict_of_data=None, gui=None) -> pd.DataFrame:
+
+# def validate_data_channels(dict_of_data: Dict=None) -> Dict:
+#     if dict_of_data == None:
+#         raise ValueError('Dictionary of data is empty.')
+#
+#     for key in dict_of_data:
+
+
+def allocate_photons(dict_of_data=None) -> pd.DataFrame:
     """
     Returns a dataframe in which each photon is a part of a frame, line and possibly laser pulse
     :param dict_of_data: All events data, distributed to its input channel
     :return: pandas.DataFrame
     """
-    import numpy as np
 
     # Preparations
     irrelevant_keys = {'PMT1', 'PMT2'}
     relevant_keys = set(dict_of_data.keys()) - irrelevant_keys
 
-    df_photons = dict_of_data['PMT1']
+    df_photons = dict_of_data['PMT1']  # Currently supports only one input channel
     df_photons = pd.DataFrame(df_photons)  # before this change it's a series with a name, not column head
     column_heads = {'Lines': 'time_rel_line', 'Frames': 'time_rel_frames',
                     'Laser': 'time_rel_pulse', 'TAG Lens': 'time_rel_tag'}

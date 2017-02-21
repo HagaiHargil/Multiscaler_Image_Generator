@@ -5,13 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce72d029-62be-4914-a4dd-f8d27fa83d2f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Hagai.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Hagai.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Update/apply_df_funcs.pyx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Update/create_hex_dict.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Update/setup.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Update/gui.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Multiscaler_Image_Generator.iml" afterPath="$PROJECT_DIR$/.idea/Multiscaler_Image_Generator.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Update/Test/test_lst_tools.py" afterPath="$PROJECT_DIR$/Update/Test/test_lst_tools.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Update/class_defs.py" afterPath="$PROJECT_DIR$/Update/class_defs.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Update/gui.py" afterPath="$PROJECT_DIR$/Update/gui.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Update/lst_tools.py" afterPath="$PROJECT_DIR$/Update/lst_tools.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Update/main_multiscaler_readout.py" afterPath="$PROJECT_DIR$/Update/main_multiscaler_readout.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Update/timepatch_manager.py" afterPath="$PROJECT_DIR$/Update/timepatch_manager.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,23 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="gui.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Update/gui.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="656">
-              <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-              <folding>
-                <element signature="e#34#55#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="lst_tools.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Update/lst_tools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="842">
-              <caret line="245" column="0" lean-forward="true" selection-start-line="245" selection-start-column="0" selection-end-line="245" selection-end-column="0" />
+            <state relative-caret-position="1956">
+              <caret line="304" column="62" lean-forward="true" selection-start-line="304" selection-start-column="62" selection-end-line="304" selection-end-column="62" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -53,24 +46,100 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main_multiscaler_readout.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Update/main_multiscaler_readout.py">
+      <file leaf-file-name="tkinter_gui_multiscaler.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Update/tkinter_gui_multiscaler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="569">
-              <caret line="37" column="27" lean-forward="true" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+            <state relative-caret-position="679">
+              <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="timepatch_manager.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Update/timepatch_manager.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-725">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding>
-                <element signature="e#84#106#0" expanded="true" />
+                <element signature="e#84#103#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class_defs.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_lst_tools.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Update/Test/test_lst_tools.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="29">
+              <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main_multiscaler_readout.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Update/main_multiscaler_readout.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="302">
+              <caret line="47" column="77" lean-forward="true" selection-start-line="47" selection-start-column="77" selection-end-line="47" selection-end-column="77" />
+              <folding>
+                <element signature="e#84#133#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="codecs.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Anaconda3/envs/Multiscaler/Lib/codecs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="332">
+              <caret line="313" column="58" lean-forward="false" selection-start-line="313" selection-start-column="58" selection-end-line="313" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create_hex_dict.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Update/create_hex_dict.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="116">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding>
+                <element signature="e#34#57#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Update/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="apply_df_funcs.pyx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Update/apply_df_funcs.pyx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="7" column="48" lean-forward="false" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="class_defs.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Update/class_defs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="505">
+              <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+              <folding>
+                <element signature="e#35#46#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -93,6 +162,16 @@
       <find>timePatch</find>
       <find>Menubutton</find>
       <find>df_frame_start</find>
+      <find>self.vec_b16</find>
+      <find>self.vec_b22</find>
+      <find>@jit</find>
+      <find>apply_df_funcs.b22</find>
+      <find>Update.apply_df_funcs.hextobin</find>
+      <find>list_of_frames</find>
+      <find>PMT2</find>
+      <find>determine</find>
+      <find>for</find>
+      <find>value</find>
     </findStrings>
     <replaceStrings>
       <replace>abs_time</replace>
@@ -101,9 +180,19 @@
       <replace>timepatch</replace>
       <replace>ttk.Combobox</replace>
       <replace>df_first_index</replace>
+      <replace>vec_16</replace>
+      <replace>b16</replace>
+      <replace>Update.apply_df_funcs.b22</replace>
+      <replace>hextobin</replace>
+      <replace>deque_of_frames</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Hagai Hargil &lt;hagaihargil@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -123,21 +212,27 @@
         <option value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/7/StudentsHW/HW7question2_elor.py" />
         <option value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/Solution/Exer9Q1.py" />
         <option value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/Solution/Exer9Q2.py" />
-        <option value="$PROJECT_DIR$/Update/Test/test_lst_tools.py" />
         <option value="$PROJECT_DIR$/../../Python Scripts/Gav/gav_number.py" />
         <option value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/8/StudentsHW/ex8_keith/ex8/ex82.py" />
         <option value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/ex9.py_keith/ex9.py" />
-        <option value="$PROJECT_DIR$/Update/timepatch_manager.py" />
         <option value="$PROJECT_DIR$/Update/Test/test_frame.py" />
         <option value="$PROJECT_DIR$/../../Python Scripts/IKnowFirst/readAllData.py" />
         <option value="$PROJECT_DIR$/../../Python Scripts/IKnowFirst/analyzedResults.py" />
         <option value="$PROJECT_DIR$/../../Python Scripts/IKnowFirst/plusMinusPred.py" />
         <option value="$PROJECT_DIR$/../../Python Scripts/IKnowFirst/guiForIKF.py" />
         <option value="$PROJECT_DIR$/../../Python Scripts/IKnowFirst/IKFReadout.py" />
+        <option value="$PROJECT_DIR$/Update/gui.py" />
+        <option value="$PROJECT_DIR$/Update/create_hex_dict.py" />
+        <option value="$PROJECT_DIR$/Update/cython_checkups.py" />
+        <option value="$PROJECT_DIR$/Update/setup.py" />
+        <option value="$PROJECT_DIR$/Update/apply_df_funcs.pyx.py" />
+        <option value="$PROJECT_DIR$/Update/apply_df_funcs.pyx" />
+        <option value="$PROJECT_DIR$/Update/Test/test_lst_tools.py" />
+        <option value="$PROJECT_DIR$/Update/timepatch_manager.py" />
+        <option value="$PROJECT_DIR$/Update/main_multiscaler_readout.py" />
+        <option value="$PROJECT_DIR$/Update/tkinter_gui_multiscaler.py" />
         <option value="$PROJECT_DIR$/Update/lst_tools.py" />
         <option value="$PROJECT_DIR$/Update/class_defs.py" />
-        <option value="$PROJECT_DIR$/Update/main_multiscaler_readout.py" />
-        <option value="$PROJECT_DIR$/Update/gui.py" />
       </list>
     </option>
   </component>
@@ -171,8 +266,8 @@
     <panes />
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Update/class_defs.py" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="last.edited.regexp" value="" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Hagai/Documents/GitHub/Multiscaler_Image_Generator/Update/main_multiscaler_readout.py" />
@@ -191,23 +286,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main_multiscaler_readout">
-    <configuration default="false" name="Excercise9" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Program Files\Anaconda3\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/ex9_ron" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Multiscaler_Image_Generator" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/StudentsHW/ex9_ron/Excercise9.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <method />
-    </configuration>
     <configuration default="false" name="main_multiscaler_readout" type="PythonConfigurationType" factoryName="Python" singleton="true" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -242,23 +320,6 @@
       <option name="SHOW_COMMAND_LINE" value="true" />
       <method />
     </configuration>
-    <configuration default="false" name="Excercise12" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Program Files\Anaconda3\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Downloads/RonEx12" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Multiscaler_Image_Generator" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/Downloads/RonEx12/Excercise12.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <method />
-    </configuration>
     <configuration default="false" name="IKFReadout" type="PythonConfigurationType" factoryName="Python" singleton="true" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -274,6 +335,44 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../Python Scripts/IKnowFirst/IKFReadout.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
+      <method />
+    </configuration>
+    <configuration default="false" name="create_hex_dict" type="PythonConfigurationType" factoryName="Python" singleton="true" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Update" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Multiscaler_Image_Generator" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Update/create_hex_dict.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Nosetests in TddLstTools" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Update/Test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Multiscaler_Image_Generator" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Update/Test/test_lst_tools.py" />
+      <option name="CLASS_NAME" value="TddLstTools" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_CLASS" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="CompoundRunConfigurationType" factoryName="Compound Run Configuration">
@@ -414,19 +513,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.Excercise9" />
-      <item index="1" class="java.lang.String" itemvalue="Python.main_multiscaler_readout" />
-      <item index="2" class="java.lang.String" itemvalue="Python.gui" />
-      <item index="3" class="java.lang.String" itemvalue="Python.Excercise12" />
-      <item index="4" class="java.lang.String" itemvalue="Python.IKFReadout" />
+      <item index="0" class="java.lang.String" itemvalue="Python.main_multiscaler_readout" />
+      <item index="1" class="java.lang.String" itemvalue="Python.gui" />
+      <item index="2" class="java.lang.String" itemvalue="Python.IKFReadout" />
+      <item index="3" class="java.lang.String" itemvalue="Python.create_hex_dict" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Nosetests in TddLstTools" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.main_multiscaler_readout" />
-        <item index="1" class="java.lang.String" itemvalue="Python.IKFReadout" />
-        <item index="2" class="java.lang.String" itemvalue="Python.gui" />
-        <item index="3" class="java.lang.String" itemvalue="Python.Excercise12" />
-        <item index="4" class="java.lang.String" itemvalue="Python.Excercise9" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Nosetests in TddLstTools" />
+        <item index="2" class="java.lang.String" itemvalue="Python.create_hex_dict" />
+        <item index="3" class="java.lang.String" itemvalue="Python.IKFReadout" />
+        <item index="4" class="java.lang.String" itemvalue="Python.gui" />
       </list>
     </recent_temporary>
   </component>
@@ -444,25 +543,33 @@
       <option name="presentableId" value="Default" />
       <updated>1483633475655</updated>
     </task>
+    <task id="LOCAL-00001" summary="Major changes to GUI, and images are shown for simple data.">
+      <created>1486664559469</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1486664559469</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Nosetest_TddLstTools_test_check_range_extraction - 2017.01.25 at 10h 27m 53s.xml">
-      <configuration name="Nosetest TddLstTools.test_check_range_extraction" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetest_TddLstTools_test_check_start_of_data_value - 2017.01.25 at 10h 27m 36s.xml">
-      <configuration name="Nosetest TddLstTools.test_check_start_of_data_value" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Nosetests_in_TddLstTools - 2017.01.17 at 19h 29m 17s.xml">
+    <history-entry file="Nosetests_in_TddLstTools - 2017.02.14 at 22h 58m 53s.xml">
       <configuration name="Nosetests in TddLstTools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_TddLstTools - 2017.01.17 at 19h 34m 52s.xml">
+    <history-entry file="Nosetests_in_TddLstTools - 2017.02.14 at 23h 44m 53s.xml">
       <configuration name="Nosetests in TddLstTools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_TddLstTools - 2017.01.17 at 20h 06m 42s.xml">
+    <history-entry file="Nosetests_in_TddLstTools - 2017.02.14 at 23h 45m 47s.xml">
       <configuration name="Nosetests in TddLstTools" configurationId="tests" />
     </history-entry>
-    <history-entry file="Nosetests_in_TddLstTools - 2017.01.25 at 11h 01m 24s.xml">
+    <history-entry file="Nosetests_in_TddLstTools - 2017.02.19 at 21h 14m 14s.xml">
+      <configuration name="Nosetests in TddLstTools" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_TddLstTools - 2017.02.19 at 21h 27m 30s.xml">
+      <configuration name="Nosetests in TddLstTools" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_TddLstTools - 2017.02.19 at 21h 36m 02s.xml">
       <configuration name="Nosetests in TddLstTools" configurationId="tests" />
     </history-entry>
     <history-entry file="Nosetests_in_Test - 2017.01.08 at 23h 31m 31s.xml">
@@ -491,22 +598,22 @@
     <frame x="-11" y="-1631" width="2902" height="1582" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12810811" sideWeight="0.48929664" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298585" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298585" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12794375" sideWeight="0.48929664" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2988792" sideWeight="0.50185674" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28369322" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35443038" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24972972" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3312578" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2807148" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33730453" sideWeight="0.49814323" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24956064" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32836932" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12810811" sideWeight="0.5107034" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55621743" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5547282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24982207" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298585" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -532,6 +639,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Major changes to GUI, and images are shown for simple data." />
+    <option name="LAST_COMMIT_MESSAGE" value="Major changes to GUI, and images are shown for simple data." />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -547,23 +658,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Update/class_defs.py</url>
-          <line>57</line>
-          <option name="timeStamp" value="84" />
+          <line>94</line>
+          <option name="timeStamp" value="106" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Update/class_defs.py</url>
-          <line>137</line>
-          <option name="timeStamp" value="86" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Update/class_defs.py</url>
-          <line>39</line>
-          <option name="timeStamp" value="87" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Update/class_defs.py</url>
-          <line>38</line>
-          <option name="timeStamp" value="89" />
+          <line>155</line>
+          <option name="timeStamp" value="109" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -574,69 +675,11 @@
           <properties exception="BaseException" />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="90" />
+      <option name="time" value="113" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Update/hex_to_bin_dictionary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/7/StudentsHW/assignment7_shahar/assignment7/exercise7_Q1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1997">
-          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/7/StudentsHW/assignment7_shahar/assignment7/exercise7_Q2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="118" column="27" lean-forward="false" selection-start-line="118" selection-start-column="27" selection-end-line="118" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/7/StudentsHW/ex7_keith/ex7/ex71.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-812">
-          <caret line="14" column="4" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/7/StudentsHW/ex7_keith/ex7/ex72.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="96" column="42" lean-forward="false" selection-start-line="96" selection-start-column="42" selection-end-line="96" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/7/StudentsHW/ex7_ron/Excercise7.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="152" column="36" lean-forward="false" selection-start-line="152" selection-start-column="36" selection-end-line="152" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/7/StudentsHW/HW7question2_elor.py" />
-    <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/Solution/Exer9Q1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/numpy/core/numeric.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="487" column="14" lean-forward="true" selection-start-line="487" selection-start-column="14" selection-end-line="487" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/9/Solution/Exer9Q2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -654,36 +697,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/typing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="331" column="0" lean-forward="false" selection-start-line="331" selection-start-column="0" selection-end-line="331" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pandas/core/indexing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="1393" column="0" lean-forward="false" selection-start-line="1393" selection-start-column="0" selection-end-line="1393" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pandas/core/generic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="916" column="0" lean-forward="false" selection-start-line="916" selection-start-column="0" selection-end-line="916" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/typing.py" />
+    <entry file="file://C:/Program Files/Anaconda3/Lib/codecs.py" />
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pandas/core/indexing.py" />
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/pandas/core/generic.py" />
     <entry file="file://$PROJECT_DIR$/../../Classes/Signal_Processing/Sagol_SignalProcessing/Exercises/7/StudentsHW/HW7question1_elor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
@@ -775,13 +792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Update/Test/test_lst_tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="21" column="46" lean-forward="true" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/RonEx12/Excercise12.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2476">
@@ -831,20 +841,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Update/timepatch_manager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="59" column="22" lean-forward="true" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../Python Scripts/IKnowFirst/analyzedResults.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-          <folding>
-            <element signature="e#84#103#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -852,9 +852,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="3" lean-forward="false" selection-start-line="0" selection-start-column="3" selection-end-line="0" selection-end-column="3" />
-          <folding>
-            <element signature="e#34#63#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -862,7 +859,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="58">
           <caret line="30" column="59" lean-forward="false" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -870,7 +866,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="638">
           <caret line="35" column="16" lean-forward="true" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -878,7 +873,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-290">
           <caret line="31" column="46" lean-forward="false" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -886,9 +880,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="87">
           <caret line="13" column="27" lean-forward="false" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
-          <folding>
-            <element signature="e#34#55#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -902,64 +893,112 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/IPython/core/interactiveshell.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="2880" column="0" lean-forward="false" selection-start-line="2880" selection-start-column="0" selection-end-line="2880" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/IPython/core/interactiveshell.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="1595" column="0" lean-forward="false" selection-start-line="1595" selection-start-column="0" selection-end-line="1595" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/colorama/ansitowin32.py">
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/colorama/ansitowin32.py" />
+    <entry file="file://$PROJECT_DIR$/Update/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="44" column="52" lean-forward="true" selection-start-line="44" selection-start-column="52" selection-end-line="44" selection-end-column="52" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Update/class_defs.py">
+    <entry file="file://$PROJECT_DIR$/Update/gui.py" />
+    <entry file="file://$PROJECT_DIR$/Update/tkinter_gui.py" />
+    <entry file="file://$PROJECT_DIR$/Update/apply_df_funcs.pyx.py" />
+    <entry file="file://$PROJECT_DIR$/Update/cython_checkups.py" />
+    <entry file="file://$PROJECT_DIR$/Update/create_hex_dict.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Update/main_multiscaler_readout.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="37" column="27" lean-forward="true" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+        <state relative-caret-position="116">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding>
-            <element signature="e#84#106#0" expanded="true" />
+            <element signature="e#34#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Update/Test/test_lst_tools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Update/tkinter_gui_multiscaler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="679">
+          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/envs/Multiscaler/Lib/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="313" column="58" lean-forward="false" selection-start-line="313" selection-start-column="58" selection-end-line="313" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Update/timepatch_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-725">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="e#84#103#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Update/lst_tools.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="842">
-          <caret line="245" column="0" lean-forward="true" selection-start-line="245" selection-start-column="0" selection-end-line="245" selection-end-column="0" />
+        <state relative-caret-position="1956">
+          <caret line="304" column="62" lean-forward="true" selection-start-line="304" selection-start-column="62" selection-end-line="304" selection-end-column="62" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Update/gui.py">
+    <entry file="file://$PROJECT_DIR$/Update/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="656">
-          <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+        <state relative-caret-position="174">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Update/apply_df_funcs.pyx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="7" column="48" lean-forward="false" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Update/main_multiscaler_readout.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="47" column="77" lean-forward="true" selection-start-line="47" selection-start-column="77" selection-end-line="47" selection-end-column="77" />
           <folding>
-            <element signature="e#34#55#0" expanded="true" />
+            <element signature="e#84#133#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Update/class_defs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding>
+            <element signature="e#35#46#0" expanded="true" />
           </folding>
         </state>
       </provider>

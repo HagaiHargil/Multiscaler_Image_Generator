@@ -5,7 +5,7 @@ __author__ = Hagai Hargil
 import attr
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
+from typing import Dict, List
 
 
 def validate_number_larger_than_zero(instance, attribute, value: int=0):
@@ -18,63 +18,84 @@ def validate_number_larger_than_zero(instance, attribute, value: int=0):
 
 
 @attr.s
+class Struct(object):
+    """ Basic struct-like object for data keeping. """
+
+    start = attr.ib()
+    end = attr.ib()
+
+
+@attr.s
 class Movie(object):
     """
     A holder for Frame objects to be displayed consecutively.
     """
 
-    list_of_frame_times = attr.ib()
     data = attr.ib()
-    reprate = attr.ib()
+    reprate = attr.ib(validator=attr.validators.instance_of(float))
     num_of_cols = attr.ib(validator=attr.validators.instance_of(int))
     num_of_rows = attr.ib(validator=attr.validators.instance_of(int))
-    list_of_frames = attr.ib(default=None)
-    name = attr.ib()
-    fps = attr.ib()
+    name = attr.ib(validator=attr.validators.instance_of(str))
+    binwidth = attr.ib(validator=attr.validators.instance_of(float))
 
     @property
-    def list_of_frames(self):
-        """Populate the list containing the frames"""
+    def list_of_frame_times(self) -> List:
+        """ All frames start-times in the movie. """
+        frame_times = np.unique(self.data.index.get_level_values('Frames'))
+        if len(frame_times) > 1:
+            diff_between_frames = np.mean(np.diff(frame_times))
+        else:
+            diff_between_frames = self.data['time_rel_frames'].max()
 
-        list_of_frames = []
-        for idx, current_time in enumerate(self.list_of_frame_times):
-            cur_data = self.data[self.data.index.get_level_values('Frames') == current_time]
+        frame_times = list(frame_times)
+        frame_times.append(frame_times[-1] + diff_between_frames)
+        return frame_times
+
+    @property
+    def deque_of_frames(self):
+        """ Populate the deque containing the frames. """
+        from collections import deque
+
+        deque_of_frames = deque()
+        list_of_frames = self.list_of_frame_times
+
+        for idx, current_time in enumerate(list_of_frames[:-1]):  # populate deque with frames
+            cur_data = self.data.xs(current_time, level='Frames')
             if not cur_data.empty:
-                list_of_frames.append(Frame(data=cur_data, num_of_lines=self.num_of_cols,
-                                            num_of_rows=self.num_of_rows, number=idx,
-                                            reprate=self.reprate))
+                deque_of_frames.append(Frame(data=cur_data, num_of_lines=self.num_of_cols,
+                                             num_of_rows=self.num_of_rows, number=idx,
+                                             reprate=self.reprate, binwidth=self.binwidth, empty=False,
+                                             end_time=(list_of_frames[idx + 1] - list_of_frames[idx])))
             else:
-                list_of_frames.append(Frame(data=cur_data, num_of_lines=self.num_of_cols,
-                                            num_of_rows=self.num_of_rows, number=idx,
-                                            reprate=self.reprate, empty=True))
-        return list_of_frames
+                deque_of_frames.append(Frame(data=cur_data, num_of_lines=self.num_of_cols,
+                                             num_of_rows=self.num_of_rows, number=idx,
+                                             reprate=self.reprate, binwidth=self.binwidth, empty=True,
+                                             end_time=(list_of_frames[idx + 1] - list_of_frames[idx])))
+        return deque_of_frames
 
     def play(self):
-        """Create all frames, frame-by-frame and display them"""
+        """ Create all frames, frame-by-frame, save them as tiff and return the stack. """
 
-        import matplotlib.animation as manimation
+        from tifffile import imsave
+        from collections import namedtuple
+
 
         # Create a list containing the frames before showing them
         frames = []
-        single_frame = {'x': None, 'y': None, 'hist': None}
-        for cur_frame in self.list_of_frames:
-            single_frame['hist'], single_frame['x'], single_frame['y'] = cur_frame.create_hist()
+        deque = self.deque_of_frames
+        Frame = namedtuple('Frame', ('hist', 'x', 'y'))
+        single_frame = Frame
+        movie_to_save = np.zeros((self.num_of_rows, self.num_of_cols, len(deque)))
+
+        for idx, cur_frame in enumerate(deque):
+            single_frame.hist, single_frame.x, single_frame.y = cur_frame.create_hist()
             frames.append(single_frame)
+            movie_to_save[:, :, idx] = single_frame.hist
 
-        # Start the animation
-        FFMpegWriter = manimation.writers['ffmpeg']
-        metadata = dict(title=self.name, artist='Multiscaler')
-        writer = FFMpegWriter(fps=1, metadata=metadata)
+        imsave('{}.tif'.format(self.name), np.reshape(movie_to_save.astype(np.uint16),
+                                                      (len(deque), 512, 512)))
 
-        fig = plt.figure()
-        img = plt.imshow(np.zeros((self.num_of_rows, self.num_of_cols)), cmap='gray')
-
-        with writer.saving(fig, "{}.mp4".format(self.name), 100):
-            for frame in frames:
-                img.set_data(frame['hist'])
-                img.autoscale()
-                img.set_data(frame['hist'])
-                writer.grab_frame()
+        return movie_to_save
 
 
 @attr.s(slots=True)  # slots should speed up display
@@ -86,41 +107,53 @@ class Frame(object):
     num_of_rows = attr.ib()
     number = attr.ib(validator=attr.validators.instance_of(int))  # the frame's ordinal number
     data = attr.ib()
-    __metadata = attr.ib()
     reprate = attr.ib()  # laser repetition rate, relevant for FLIM
-    empty = attr.ib(default=False)
+    end_time = attr.ib()
+    binwidth = attr.ib()
+    empty = attr.ib(default=False, validator=attr.validators.instance_of(bool))
 
     @property
-    def __metadata(self) -> pd.DataFrame:
+    def __metadata(self) -> Dict:
         """
         Creates the metadata of the frames to be created, to be used for creating the actual images
         using histograms. Metadata can include the first photon arrival time, start and end of frames, etc.
-        :return: pd.DataFrame of all needed metadata.
+        :return: Dictionary of all needed metadata.
         """
-        index_list = ['First', 'Last', 'MaxDelta']
-        index_table = pd.DataFrame(columns=self.data.index.names, index=index_list)
-        index_table.loc['First', :] = self.data.index.min()
 
-        for col in index_table:
-            unique_indices = np.unique(self.data.index.get_level_values(col))
-            if len(unique_indices) > 1:
-                index_table.loc['MaxDelta', col] = np.diff(unique_indices).max()
+        metadata = {}
+        jitter = 0.02  # 5% of jitter of the signals that creates frames
+
+        # Frame metadata
+        frame_start = 0
+        frame_end = self.end_time
+        metadata['Frame'] = Struct(start=frame_start, end=frame_end)
+
+        # Lines metadata
+        lines_start = 0
+        unique_indices = np.unique(self.data.index.get_level_values('Lines'))
+        diffs = np.diff(unique_indices)
+        diffs_max = diffs.max()
+
+        try:
+            if diffs_max > ((1 + 4 * jitter) * np.mean(diffs)):  # Noisy data
+                lines_end = np.mean(diffs) * (1 + jitter)
             else:
-                index_table.loc['MaxDelta', col] = 0
+                lines_end = diffs_max
+        except ValueError:
+            lines_end = 0
+            self.empty = True
 
-        index_table.loc['Last', :] = self.data.index.max() + index_table.loc['MaxDelta', :]
+        metadata['Lines'] = Struct(start=lines_start, end=lines_end)
 
-        # Mandatory values and check-ups
-        index_table.loc['First', 'Lines'] = 0  # a line always starts from time 0
-        try:  # checking if we have laser input for FLIM
-            index_table.loc['MaxDelta', 'Laser'] = 1/self.reprate
-        except KeyError:
+        # Laser pulses metadata
+        try:
+            laser_start = 0
+            laser_end =  1/self.reprate * self.binwidth  # 800 ps resolution
+            metadata['Laser'] = Struct(start=laser_start, end=laser_end)
+        except ValueError:
             pass
 
-        if index_table.loc['Last', 'Frames'] == 0:  # single frame of data
-            index_table.loc['Last', 'Frames'] = index_table.loc['Last', 'Lines']
-
-        return index_table
+        return metadata
 
     def __create_hist_edges(self):
         """
@@ -128,17 +161,21 @@ class Frame(object):
         :return: Tuple of np.array
         """
 
-        col_edge = np.linspace(start=self.__metadata.loc['First', 'Lines'],
-                                stop=self.__metadata.loc['MaxDelta', 'Lines'],
-                                num=self.num_of_lines)
-        row_edge = np.linspace(start=self.__metadata.loc['First', 'Frames'],
-                               stop=self.__metadata.loc['Last', 'Frames'],
-                               num=self.num_of_rows)
+        metadata = self.__metadata
+        if self.empty is not True:
+            col_edge = np.linspace(start=metadata['Lines'].start,
+                                    stop=metadata['Lines'].end,
+                                    num=self.num_of_lines + 1)
+            row_edge = np.linspace(start=metadata['Frame'].start,
+                                   stop=metadata['Frame'].end,
+                                   num=self.num_of_rows + 1)
 
-        assert np.all(np.diff(col_edge) > 0)
-        assert np.all(np.diff(row_edge) > 0)
+            assert np.all(np.diff(col_edge) > 0)
+            assert np.all(np.diff(row_edge) > 0)
 
-        return col_edge, row_edge
+            return col_edge, row_edge
+        else:
+            return 1, 1
 
     def create_hist(self):
         """
@@ -147,13 +184,19 @@ class Frame(object):
         """
         if not self.empty:
             xedges, yedges = self.__create_hist_edges()
-            col_data_as_series = self.data["time_rel_line"]
-            col_data_as_array = np.array(col_data_as_series)
-            row_data_as_series = self.data.index.get_level_values('Frames').codes + self.data["time_rel_frames"]
-            row_data_as_array = np.array(row_data_as_series)
+            col_data_as_array = self.data["time_rel_line"].values
+            row_data_as_array = self.data["time_rel_frames"].values
 
             hist, x, y = np.histogram2d(col_data_as_array, row_data_as_array, bins=(xedges, yedges))
         else:
             return np.zeros(self.num_of_lines, self.num_of_rows), 0, 0
 
         return hist, x, y
+
+    def show(self):
+        """ Show the frame. Mainly for debugging purposes, as the Movie object doesn't use it. """
+        hist, x, y = self.create_hist()
+        plt.figure()
+        plt.imshow(hist, cmap='gray')
+        plt.title('Frame number {}'.format(self.number))
+        plt.axis('off')

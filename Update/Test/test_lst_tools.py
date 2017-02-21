@@ -66,6 +66,77 @@ class TddLstTools(unittest.TestCase):
         self.assertEqual(list_of_first_event, list_of_returned_events)
         self.assertEqual(list_of_first_times, list_of_first_times)
 
+    def test_create_frame_array_normal_input(self):
+        import numpy as np
+        from Update.lst_tools import create_frame_array
+
+        last_event = int(1e3)
+        num_of_events = 10
+        check_linspace = list(np.linspace(0, last_event, num=num_of_events, endpoint=False))
+
+        self.assertEqual(check_linspace, list(create_frame_array(last_event_time=last_event,
+                                                                 num_of_frames=num_of_events)))
+
+    def test_create_frame_array_negative_input(self):
+        from Update.lst_tools import create_frame_array
+
+        last_event = int(-1e4)
+        num_of_frames = 10
+
+        with self.assertRaises(ValueError):
+            arr = create_frame_array(last_event, num_of_frames)
+
+    def test_create_line_array_normal_input(self):
+        import numpy as np
+        from Update.lst_tools import create_line_array
+
+        last_event = int(1e4)
+        num_of_events = 10
+        num_of_frames = 4
+
+        check_linspace = list(np.linspace(0, last_event, num_of_events * num_of_frames))
+
+        self.assertEqual(check_linspace, list(create_line_array(last_event, num_of_events, num_of_frames)))
+
+    def test_create_line_array_negative_input(self):
+        from Update.lst_tools import create_line_array
+
+        last_event = int(-1e4)
+        num_of_events = 10
+        num_of_frames = 4
+
+        with self.assertRaises(ValueError):
+            arr = create_line_array(last_event, num_of_events, num_of_frames)
+
+    def test_determine_data_channels_empty_df(self):
+        import pandas as pd
+        from Update.lst_tools import determine_data_channels
+
+        test_df = pd.DataFrame(data=[])
+        empty_dict = {}
+
+        with self.assertRaises(ValueError):
+            test = determine_data_channels(test_df, empty_dict)
+
+    def test_determine_data_channels_short_dict(self):
+        from Update.lst_tools import determine_data_channels
+        import pandas as pd
+
+        dict1 = {'a': 1, 'b': 2}
+        df = pd.DataFrame([1, 2])
+
+        with self.assertRaises(KeyError):
+            test = determine_data_channels(df, dict1)
+
+
+    def test_create_inputs_dict_empty_gui(self):
+        from Update.lst_tools import create_inputs_dict
+
+        trial_gui = None
+
+        with self.assertRaises(ValueError):
+            dict1 = create_inputs_dict(trial_gui)
+
 
 if __name__ == '__main__':
     unittest.main()
